@@ -7,9 +7,11 @@ import ProfileView from "./ProfileView";
 
 ReactDOM.render(
   <React.StrictMode>
-    <FriendsView />
-    <PlaylistView />
-    <ProfileView />
+    <div className="container">
+      <FriendsView />
+      <PlaylistView />
+      <ProfileView />
+    </div>
   </React.StrictMode>,
   document.getElementById("root")
 );
