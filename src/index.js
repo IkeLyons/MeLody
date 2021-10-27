@@ -4,19 +4,12 @@ import "./index.css";
 import FriendsView from "./FriendsView";
 import PlaylistView from "./PlaylistView";
 import ProfileView from "./ProfileView";
+import LoginButton from "./LoginButton";
 
 ReactDOM.render(
   <React.StrictMode>
     <div className="container">
-      <div>
-        <div>
-          <div id="login">
-            <h1>First, log in to spotify</h1>
-            <a href="/login">Log in</a>
-          </div>
-          <div id="loggedin"></div>
-        </div>
-      </div>
+      <LoginButton />
       <FriendsView />
       <PlaylistView />
       <ProfileView />
