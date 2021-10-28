@@ -2,28 +2,38 @@ var express = require("express"); // Express web server framework
 var request = require("request"); // "Request" library
 var cors = require("cors");
 var querystring = require("querystring");
+var secrets = require("./secrets.json");
+var spotifyWebApi = require("spotify-web-api-node");
 
 var client_id = secrets.client_id; // Your client id
 var client_secret = secrets.client_secret; // Your secret
 var redirect_uri = "http://localhost:3000"; // Your redirect uri
+var credentials = {
+  clientId: client_id,
+  clientSecret: client_secret,
+  redirectUri: redirect_uri,
+};
 
 var app = express();
 app.use(cors());
 
-app.get("/login", function (req, res) {
-  console.log("/login");
+app.post("/login", (req, res) => {
+  console.log(req.data);
+  // let spotifyApi = new spotifyWebApi(credentials);
+  // const code = req.body.code;
 
-  // your application requests authorization
-  var scope = "user-read-private user-read-email";
-  res.redirect(
-    "https://accounts.spotify.com/authorize?" +
-      querystring.stringify({
-        response_type: "code",
-        client_id: client_id,
-        scope: scope,
-        redirect_uri: redirect_uri,
-      })
-  );
+  // spotifyApi
+  //   .authorizationCodeGrant(code)
+  //   .then((data) => {
+  //     res.json({
+  //       accessToken: data.body.access_token,
+  //     });
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //     res.sendStatus(400);
+  //   });
+  // console.log(accessToken);
 });
 
 console.log("Listening on 8888");

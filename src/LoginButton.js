@@ -1,12 +1,23 @@
 import React from "react";
 import spotifyHelper from "./spotifyHelper.js";
+import axios from "axios";
 
 const code = new URLSearchParams(window.location.search).get("code");
 
 class LoginButton extends React.Component {
   componentDidMount() {
     if (code) {
-      window.history.pushState({}, null, "/");
+      axios
+        .post("http://localhost:8888/login", { code: code })
+        .then((response) => {
+          window.history.pushState({}, null, "/");
+
+          console.log(response.data);
+          //setAccessToken(response.data.accessToken);
+        })
+        .catch(() => {
+          window.location = "/";
+        });
     }
   }
 
@@ -22,7 +33,7 @@ class LoginButton extends React.Component {
             <div id="loggedin"></div>
           </div>
         ) : (
-          <p>{code}</p>
+          <p>You are logged in and your code is: {code}</p>
         )}
       </div>
     );
