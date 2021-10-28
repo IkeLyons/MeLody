@@ -4,6 +4,12 @@ import spotifyHelper from "./spotifyHelper.js";
 const code = new URLSearchParams(window.location.search).get("code");
 
 class LoginButton extends React.Component {
+  componentDidMount() {
+    if (code) {
+      window.history.pushState({}, null, "/");
+    }
+  }
+
   render() {
     return (
       <div>
