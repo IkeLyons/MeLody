@@ -1,25 +1,25 @@
 import React from "react";
 import styles from "./ProfileView.css"
-import settingsGear from "./settingsgear.png"
 import userPic from "./blankprofilepic.png"
-import {Button} from "primereact/button"
-import {Avatar} from "primereact/avatar"
+import { Button } from "primereact/button"
+import { Avatar } from "primereact/avatar"
+import { FaCog } from "react-icons/fa"
 
 class ProfileView extends React.Component {
   render() {
     return( 
-    	<div className = {styles.profileContainer}>
+    	<div className = "profileContainer">
     		<p>Profile Info!</p>
     		<div className = "upperButtons">
     			<Button label = "Edit Profile"/>
-    			<button>
-    				<img src = {settingsGear}/>
-    			</button>
+    			<a href = "#" id = "settings"><FaCog /></a>
     		</div>
 
     		<div className = "userInfo">
     			<h1>Username</h1>
-    			<Avatar image = {userPic} shape = "circle"/>
+    			<div className = "userAvatar">
+                    <img src = {userPic}/>
+                </div>
     		</div>
 
     		<div className = "genreInfo">
