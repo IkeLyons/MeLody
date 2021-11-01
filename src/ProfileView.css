@@ -1,3 +1,26 @@
 .profileContainer{
-	background-color: gray;
+	background-color: gainsboro;
+	width: 500px;
 }
+
+.userInfo{
+	align-content: 
+}
+
+.userAvatar img{
+	max-width: 25%;
+    height: auto;
+    object-fit: contain; 
+    border-radius: 50%;
+}
+
+#settings svg{
+	color: #808080;
+	height: 25px;
+	width: 25px;
+	position: absolute;
+	margin-top: 1px;
+	right: 0px;
+}
+
+#settings svg:hover { color: #686868; }
