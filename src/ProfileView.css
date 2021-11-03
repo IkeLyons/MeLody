@@ -1,4 +1,4 @@
-.profileContainer{
+ .profileContainer{
 	background-color: gainsboro;
 	height: 1000px;
 }
@@ -23,19 +23,48 @@
 	right: 25px;
 }
 
-#settings svg:hover { color: #686868; }
+#settings svg:hover{ color: #686868; }
 
 .userInfo{
-	position: static;
-	margin-top: 35px; 
+	position: relative; 
+	left: 65%;
+	transform: translateX(-50%);
+	margin-top: 50px; 
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: auto auto;
+	grid-column-gap: 7%;
+}
+
+h1{
+	font-weight: 550;
+    color: black;
+  	font-size: 24px;
 }
 
 .userAvatar img{
-	max-width: 40%;
-    height: auto;
+	max-width: 50%;
     object-fit: contain; 
     border-radius: 50%;
+}
+
+.genreInfo{
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+
+.anthem{
+	margin-bottom: 20px;
+}
+
+.aboutMe{
+	margin-left: 10px;
+}
+.aboutMeContent{
+	background: gray;
+	margin-top: 0px;
+	margin-right: 10px;
+	height: 70px;
+	width: auto;
+	text-align: center;
 }
 
