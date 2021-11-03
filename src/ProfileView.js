@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./ProfileView.css"
 import userPic from "./blankprofilepic.png"
 import { FaCog } from "react-icons/fa"
+import { Chip } from "primereact/chip"
 
 class ProfileView extends React.Component {
   render() {
@@ -19,13 +20,21 @@ class ProfileView extends React.Component {
                 </div>
     		</div>
 
+            {/*work to get this based on how many user has inputted*/}
     		<div className = "genreInfo">
+                <Chip label= "Genre 1" className= "p-mb-2" removable/>
+                <Chip label= "Genre 2" className= "p-mb-2" removable/>
+                <Chip label= "Genre 3" className= "p-mb-2" removable/>
     		</div>
 
-    		<div className = "Anthem">
+    		<div className = "anthem">
+                My Anthem
+                {/*Insert Song display here*/}
     		</div>
 
     		<div className = "aboutMe">
+                About Me
+                <p className = "aboutMeContent">TEXT</p>
     		</div>
 
     		<div className = "topTracks">
