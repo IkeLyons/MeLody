@@ -7,11 +7,13 @@ import ProfileView from "./ProfileView";
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className="container">
-      <FriendsView />
-      <PlaylistView />
-      <ProfileView />
-    </div>
+    <grid-container>
+    	<grid-item>	<FriendsView /> </grid-item>  
+      	
+      	<grid-item> <PlaylistView /> </grid-item>
+      	
+      	<grid-item> <ProfileView /> </grid-item>
+    </grid-container>
   </React.StrictMode>,
   document.getElementById("root")
 );
