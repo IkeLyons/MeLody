@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./ProfileView.css"
-import userPic from "./blankprofilepic.png"
-import { FaCog } from "react-icons/fa"
-import { Chip } from "primereact/chip"
+import "./ProfileView.css";
+import userPic from "./blankprofilepic.png";
+import { FaCog } from "react-icons/fa";
+import { Chip } from "primereact/chip";
 
 class ProfileView extends React.Component {
   render() {
@@ -22,9 +22,9 @@ class ProfileView extends React.Component {
 
             {/*work to get this based on how many user has inputted*/}
     		<div className = "genreInfo">
-                <Chip label= "Genre 1" className= "p-mb-2" removable/>
-                <Chip label= "Genre 2" className= "p-mb-2" removable/>
-                <Chip label= "Genre 3" className= "p-mb-2" removable/>
+                <span className = "chip"><Chip label= "Genre 1" className= "p-mb-2 p-mr-2" removable/></span>
+                <span className = "chip"><Chip label= "Genre 2" className= "p-mb-2 p-mr-2" removable/></span>
+                <span className = "chip"><Chip label= "Genre 3" className= "p-mb-2 p-mr-2" removable/></span>
     		</div>
 
     		<div className = "anthem">

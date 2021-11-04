@@ -1,3 +1,5 @@
+@import "../node_modules/primeicons/primeicons.css";
+
  .profileContainer{
 	background-color: gainsboro;
 	height: 1000px;
@@ -50,6 +52,13 @@ h1{
 .genreInfo{
 	margin-top: 0px;
 	margin-bottom: 20px;
+	display: grid;
+	grid-template-columns: auto auto auto;
+}
+
+.chip{
+	display: flex;
+	justify-content: center;
 }
 
 .anthem{
