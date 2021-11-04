@@ -1,6 +1,8 @@
 import React from "react";
 import "./ProfileView.css";
+import "primereact/resources/themes/bootstrap4-light-blue/theme.css"
 import userPic from "./blankprofilepic.png";
+import anthemCover from "./ManonTheMoonTheEndofDay.jpg";
 import { FaCog } from "react-icons/fa";
 import { Chip } from "primereact/chip";
 
@@ -14,7 +16,7 @@ class ProfileView extends React.Component {
     		</div>
 
     		<div className = "userInfo">
-    			<h1>Username</h1>
+    			<h1>username</h1>
     			<div className = "userAvatar">
                     <img src = {userPic}/>
                 </div>
@@ -22,19 +24,29 @@ class ProfileView extends React.Component {
 
             {/*work to get this based on how many user has inputted*/}
     		<div className = "genreInfo">
-                <span className = "chip"><Chip label= "Genre 1" className= "p-mb-2 p-mr-2" removable/></span>
-                <span className = "chip"><Chip label= "Genre 2" className= "p-mb-2 p-mr-2" removable/></span>
-                <span className = "chip"><Chip label= "Genre 3" className= "p-mb-2 p-mr-2" removable/></span>
+                <span className = "chip"><Chip label= "Rap" className= "p-chip p-mb-2 p-mr-2"/></span>
+                <span className = "chip"><Chip label= "Sea Shanties" className= "p-chip p-mb-2 p-mr-2"/></span>
+                <span className = "chip"><Chip label= "2010s Pop" className= "p-chip p-mb-2 p-mr-2"/></span>
     		</div>
 
     		<div className = "anthem">
                 My Anthem
-                {/*Insert Song display here*/}
+                <div className = "anthemDisplay">
+                    <img src = {anthemCover}/>
+                    <div className = "anthemInfo">
+                        <span>Soundtrack 2 My Life</span>
+                        <span>Kid Cudi</span>
+                        <span>Man on the Moon</span>
+                    </div>
+                </div>
     		</div>
 
     		<div className = "aboutMe">
                 About Me
-                <p className = "aboutMeContent">TEXT</p>
+                <p className = "aboutMeContent">
+                    His palms are sweaty, knees weak, arms are heavy
+                    There's vomit on his sweater already, mom's spaghetti
+                </p>
     		</div>
 
     		<div className = "topTracks">
