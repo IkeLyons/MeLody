@@ -1,0 +1,110 @@
+.profileContainer{
+	background-color: gainsboro;
+	height: 1000px;
+}
+
+.upperButtons{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	margin-top: 10px; 	
+}
+
+.editProfile{
+	border-radius: 8px;
+	position: absolute;
+	margin-left: 15px;
+}
+
+#settings svg{
+	color: #808080;
+	height: 25px;
+	width: 25px;
+	position: absolute;
+	right: 25px;
+}
+
+#settings svg:hover{ color: #686868; }
+
+.userInfo{
+	position: relative; 
+	margin-top: 50px; 
+	display: flex;
+	gap: 20px;
+	margin-bottom: 10px;
+	justify-content: center;
+	align-items: center;
+}
+
+.userInfo h1{
+	font-weight: 550;
+    color: black;
+  	font-size: 22px;
+}
+
+.userAvatar img{
+	width: 90px;
+	height: 90px;
+    object-fit: cover; 
+    border-radius: 50%;
+}
+
+.genreInfo{
+	margin-top: 0px;
+	margin-bottom: 20px;
+	display: grid;
+	grid-template-columns: auto auto auto;
+}
+
+.chip{
+	display: flex;
+	justify-content: center;
+}
+
+.anthem{
+	margin-bottom: 20px;
+	margin-left: 10px;
+}
+
+.anthemDisplay{
+	background: darkgray;
+	width: 95%;
+  	height: auto;
+  	margin-right: 10px;
+  	border-radius: 8px;
+  	padding: 10px;
+  	display: flex;
+  	flex-direction: row;
+}
+
+.anthemDisplay img{
+	max-width: 25%;
+	height: auto;
+}
+
+.anthemInfo{
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	color: gainsboro;
+  	font-size: 0.75em;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px 25px;
+
+}
+
+.aboutMe{
+	margin-left: 10px;
+}
+.aboutMeContent{
+	padding: 5px;
+	background: darkgray;
+	margin-top: 0px;
+	margin-right: 10px;
+	height: 70px;
+	width: auto;
+	text-align: center;
+	border-radius: 8px;
+	font-size: 0.9em;
+}
+
