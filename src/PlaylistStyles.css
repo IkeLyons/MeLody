@@ -1,0 +1,81 @@
+h1 {
+  font: Consolas;
+  color: Black;
+  text-align: left;
+  margin: 20px;
+  font-size: 200%;
+}
+
+h4 {
+  font: Monaco;
+  color: white;
+  text-align: center;
+}
+
+.addPlaylistButton {
+  height: 45px;
+  width: 45px;
+  float: right;
+  margin-right: 20px;
+  font-size: 35px;
+  text-align: center;
+}
+
+
+.playlistLI {
+  display: inline-table;
+  background-color: purple;
+  color: white;
+  padding: 15px;
+  margin: 15px;
+  width: 0px;
+  height: 120px;
+  align-items: center;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.playlistCover {
+  width: 80%;
+  height: 60%;
+}
+
+.userLI {
+  display: inline;
+  float: center;
+  background-color: blue;
+  height: 10px;
+  width: 10px;
+  margin: 5px;
+  padding: 5px;
+  font-size: 10px;
+  border-radius: 50% ;
+  vertical-align: top;
+}
+
+.PlaylistSpan {
+  width: 50%;
+  height: 100%;
+  background: lightblue;
+  border: thick;
+  border-color: black;
+}
+
+.button {
+  color: White;
+  background-color: Blue;
+  border: 2px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 5px;
+}
+
+.PlaylistContainer {
+
+}
+
+.PlaylistContent {
+  
+}
