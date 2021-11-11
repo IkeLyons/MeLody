@@ -47,23 +47,19 @@
 }
 .cnt-alllists{
     margin: auto;
+    /* display: inline-flex; */
 }
 .cnt-listheader{
     height: 7em;
-    line-height: 5em;
+    line-height: 4.7em;
     text-align: center;
-    border: 1px solid darkviolet;
+    vertical-align: middle;
     padding: 7px;
     margin: auto;
-    border-radius: 35px;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    width: initial;
 }
 .cnt-listheader>span{
     display: inline-block;
-    vertical-align: middle;
+    /* vertical-align: middle; */
 }
 
 
@@ -74,10 +70,10 @@
 }
 .cnt-listheader>span:nth-child(1){
     background: cornflowerblue;
-    width: 20em;
-    height: 3em;
-    color: cornsilk;
-    border-radius: 55px;
+    width: 30em;
+    height: 2.5em;
+    color: white;
+    /* border-radius: 55px; */
     font-family: 'Dancing Script', cursive;
     font-size: 2em;
 }
@@ -92,24 +88,23 @@
 }
 .cnt-listheader>span:nth-child(2){
     float: right;
-    position: relative;
-    margin-right: 14px;
-    margin-top: 10px;
+    background: darkslateblue;
+    width: 4.5em;
+    border: 1px solid white;
 }
 .cnt-listheader>span:nth-child(2)>a{
     font-size: x-large;
-    color: black;
+    color: white;
     text-decoration: none;
-    border: 7px double darkslateblue;
-    padding: 10px;
+    cursor: pointer;
 }
 
-.cnt-listheader>span:nth-child(2)>a:hover{
-    font-size: x-large;
+.cnt-listheader>span:nth-child(2):hover{
+    /* font-size: xx-large; */
     color: white;
+    background: lightcoral;
+    
 
-    background: darkslateblue;
-    padding: 10px;
 }
 
 .p-card .p-card-body {
@@ -174,4 +169,8 @@
     border: 1px solid;
     background: darkslateblue;
     color: white;
+}
+.cnt-selectuser > .p-listbox .p-component {
+    border: none;
+    /* width: 15rem; */
 }
