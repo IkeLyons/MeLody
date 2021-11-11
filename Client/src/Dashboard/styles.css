@@ -27,7 +27,7 @@
 }
 
 .container-dash {
-    width: 80%;
+    width: 60%;
     height: 100%;
     position: relative;
 }
@@ -42,8 +42,9 @@
 }
 
 .container-playlistcard{
-    display: inline-flex;
+    display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .cnt-alllists{
     margin: auto;
@@ -78,7 +79,6 @@
     height: 3em;
     color: cornsilk;
     border-radius: 55px;
-    font-family: 'Dancing Script', cursive;
     font-size: 2em;
 }
 .cnt-listheader>span:nth-child(1):hover{
@@ -87,7 +87,6 @@
     /* border: 4px double; */
     border-radius: 55px;
     border-color: cornflowerblue;
-    font-family: 'Dancing Script', cursive;
     font-size: 2em;
 }
 .cnt-listheader>span:nth-child(2){
@@ -123,7 +122,6 @@
     padding: 1rem;
     background: darkslateblue;
     color: white;
-    font-family: 'Dancing Script', cursive;
     cursor: pointer;
     
 }

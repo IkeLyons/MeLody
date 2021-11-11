@@ -140,7 +140,6 @@ export default class index extends Component {
         })
 
         return(
-
             <span className='container-playlistcard'>
                 {
                 rock.map(d=>(
@@ -250,7 +249,7 @@ export default class index extends Component {
                     <div className='container-dash'>
                         <div className='cnt-alllists'>
                             <div className='cnt-listheader'>
-                                <span><p>MY Playlists</p></span>
+                                <span><p>My Playlists</p></span>
                                 <span> <Link to={'/AddNewPlayList/'} className='pi pi-calendar-plus'></Link></span>
                             </div>
                             {
