@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
+
+
+
+.container-main {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: inline-flex;
+}
+
+
+
+
+.box{
+    padding: 5px 5px;
+    height: 10em;
+    border: 1px solid black;
+}
+
+
+.user-item > .user-image{
+    height: 2em;
+    width: 2em;
+    /* margin: 4px; */
+}
+
+.container-dash {
+    width: 80%;
+    height: 100%;
+    position: relative;
+}
+.cnt-selectuser{
+    display: inline-flex;
+    /* background: linear-gradient( #8e73c0, #1b66bb); */
+}
+
+.cnt-selectuser > div:nth-child(1){
+    position: relative;
+    margin-top: 15px;
+}
+
+.container-playlistcard{
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+.cnt-alllists{
+    margin: auto;
+}
+.cnt-listheader{
+    height: 7em;
+    line-height: 5em;
+    text-align: center;
+    border: 1px solid darkviolet;
+    padding: 7px;
+    margin: auto;
+    border-radius: 35px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    width: initial;
+}
+.cnt-listheader>span{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+.cnt-listheader>span:nth-child(1)>p{
+    position: relative;
+    margin: 2px;
+    font-size: 2em;
+}
+.cnt-listheader>span:nth-child(1){
+    background: cornflowerblue;
+    width: 20em;
+    height: 3em;
+    color: cornsilk;
+    border-radius: 55px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2em;
+}
+.cnt-listheader>span:nth-child(1):hover{
+    background-color: white;
+    color: cornflowerblue;
+    /* border: 4px double; */
+    border-radius: 55px;
+    border-color: cornflowerblue;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2em;
+}
+.cnt-listheader>span:nth-child(2){
+    float: right;
+    position: relative;
+    margin-right: 14px;
+    margin-top: 10px;
+}
+.cnt-listheader>span:nth-child(2)>a{
+    font-size: x-large;
+    color: black;
+    text-decoration: none;
+    border: 7px double darkslateblue;
+    padding: 10px;
+}
+
+.cnt-listheader>span:nth-child(2)>a:hover{
+    font-size: x-large;
+    color: white;
+
+    background: darkslateblue;
+    padding: 10px;
+}
+
+.p-card .p-card-body {
+    padding: 1rem;
+    background: lightskyblue;
+    color: white;
+    height: 9em;
+}
+
+.p-card .p-card-body:hover {
+    padding: 1rem;
+    background: darkslateblue;
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    cursor: pointer;
+    
+}
+
+.p-card .p-card-subtitle {
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: wheat;
+    /* font-family: 'Dancing Script', cursive;  */
+}
+
+.play-img{
+    height: 12em;
+}
+
+
+
+/* Side Bar configs */
+
+.container-side{
+    height: fit-content;
+    width: 20%;
+    position: relative;
+    /* background: lightblue; */
+    text-align: center;
+    display: inline-grid;
+    border: .5px solid gray;
+    border-bottom: none;
+    border-left: none;
+    border-top: none;
+    margin-top: 15px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+}
+
+.side-link-block{
+    height: 7em;
+    /* border: 1px solid black; */
+    padding: 15px;
+    margin: 5px;
+    display: inline-table;
+}
+
+.side-link-block > div{
+
+    width: inherit;
+    height: max-content;
+    padding: 25px 15px;
+    border: 1px solid;
+    background: darkslateblue;
+    color: white;
+}

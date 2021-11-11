@@ -1,0 +1,40 @@
+.container-head{
+    display: flex;
+    background-color: black;
+    margin: 0px;
+    width: 100%;
+    min-height: 120px;
+    color:white;
+    font-size: xx-large;
+    word-spacing: 5px;
+    text-align: center;
+}
+
+.container-head h1{
+    position: relative;
+    left:500px;
+    text-align: center;
+    word-spacing: 5px;
+    transition: word-spacing 1s;
+}
+
+.container-head h1:hover{
+    word-spacing: 15px;
+    color: lightseagreen;
+}
+
+.container-head ul li{
+    display: inline-block;
+    padding: 5px;
+    position: relative;
+    left: -450px;
+    top:-15px;
+    font-size: 15px;
+    transition: font-size 1s;
+    color: lightskyblue;
+}
+
+.container-head ul li:hover{
+    font-size: 25px;
+    color: lightpink;
+}

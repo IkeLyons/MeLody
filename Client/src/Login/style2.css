@@ -1,0 +1,119 @@
+.input-field input{
+    position: relative;
+    top: 25%;
+    width: 300px;
+    height: 45px;
+    margin: 10px 0px;
+    padding: 0px 20px;
+    background: none;
+    border: .5px solid dodgerblue;
+    /* border-bottom: .5px solid teal; */
+    border-radius: unset;
+    font-size: 1.6em;
+    color: seagreen;
+}
+.login-contianer{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.login-contianer:before{
+    content: '';
+    position: absolute;
+    width: 2000px;
+    height: 2000px;
+    border-radius: 50%;
+    background: linear-gradient(-45deg, #4481eb, #04befe);
+    top: 0%;
+    right: 40%;
+    transform: translateY(-15%);
+    z-index: 1;
+    opacity: .8;
+    animation-name: login;
+    animation-timing-function: ease-in-out;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+
+}
+
+@keyframes login{
+    from{
+        right:88%;
+    }
+    to{
+        right:60%;
+    }
+}
+
+.forms-contianer{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+
+}
+
+div.signin {
+    position: absolute;
+    top: 100px;
+    width: 400px;
+    margin-left: 500px;
+    height: 500px;
+    border: .5px solid black;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+    box-shadow: 10px 10px 10px lightgrey;
+    z-index: 100;
+    opacity: 1;
+}
+
+.title{
+    font-size: 3.2rem;
+    background: lightblue;
+    color: white;
+    margin: 0;
+    height: 80px;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.input-field i{
+    text-align: center;
+    margin: 3px 10px;
+    padding: 20px 20px;
+    border-radius: 50%;
+    border: .5px solid grey;
+}
+.btn-Login{
+    width: 300px;
+    height: 55px;
+    cursor: pointer;
+    color: lightskyblue;
+    background-color: dodgerblue;
+    transition: .5s;
+    border: .8px solid lightblue;
+    border-top: .5px solid white;
+    border-radius: unset;
+}
+
+.btn-Login:hover{
+    background-color: lightskyblue;
+    color: white;
+    text-transform: uppercase;
+    border:1px solid #fff;
+}
+
+#msg{
+    border: .5px solid tomato;
+    border-radius: 20px;
+    background-color: tomato;
+    color: white;
+    padding: 5px;
+    display: none;
+}

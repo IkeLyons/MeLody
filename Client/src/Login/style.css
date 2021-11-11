@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Fruktur&family=Open+Sans+Condensed:ital,wght@1,300&display=swap');
+
+
+.Login{
+    position: relative;
+    height: 600px;
+    width: 100%;
+    background: linear-gradient( #8e73c0, #1b66bb);
+    top: -500px;
+    animation-name: login;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+   
+}
+
+@keyframes login{
+    from{
+        top:-500px;
+    }
+    to{
+        top:0;
+    }
+}
+
+
+#contianerLogin{
+    align-items: center;
+    text-align: left;
+    padding: 25px;
+    position: relative;
+    top: 50px;
+    
+}
+#contianerLogin > .p-float-label {
+    padding: 5px;
+}
+#contianerLogin > .p-float-label label{
+    color: whitesmoke;
+}
+
+#login_btn{
+    color: whitesmoke;
+    left: 24px;
+    font-family: 'Fruktur', cursive;
+}
+
+#login_btn:hover{
+    color: rgb(134, 63, 175);
+    background-color: lightblue;
+    font-size:larger;
+}
+
+
+.footer_login {
+    position: fixed;
+    bottom: 8em;
+    left: 40em;
+}
+
+.footer_login > span {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    color: lightpink;
+    font-size: larger;
+    letter-spacing: 4px;
+    
+}
+
+.footer_login > .label_Melody{
+    font-size: 10em;
+    font-family: 'Fruktur', cursive;
+    color: white;
+}
+.footer_login > .label_Melody:hover{
+    color:azure;
+}
+.label_statement{
+    display: inline-grid;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
