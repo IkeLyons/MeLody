@@ -7,18 +7,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: prettier --version
-        uses: ./
         with:
           args: --version
       - name: prettier --help
-        uses: ./
         with:
           args: --help
       - name: prettier --check .
-        uses: ./
         with:
           args: --check .
       - name: prettier --write .
-        uses: ./
         with:
           args: --write .
