@@ -1,19 +1,6 @@
 import express from 'express';
-import { createRequire } from 'module';
-import spotifyWebApi from 'spotify-web-api-node';
 
 const router = express.Router();
-
-const require = createRequire(import.meta.url);
-const secrets = require('../secrets.json');
-var client_id = secrets.client_id;
-var client_secret = secrets.client_secret;
-var redirect_uri = 'http://localhost:3000';
-var credentials = {
-  clientId: client_id,
-  clientSecret: client_secret,
-  redirectUri: redirect_uri
-};
 
 let user_data = {
   users: [
@@ -64,25 +51,6 @@ router.post('/api/validateLogin', (req, res) => {
   if (!is_Found) {
     res.status(402).send(incorrect_user);
   }
-});
-
-router.post('/api/spotifyLogin', (req, res) => {
-  console.log(req.data);
-  let spotifyApi = new spotifyWebApi(credentials);
-  const code = req.body.code;
-
-  spotifyApi
-    .authorizationCodeGrant(code)
-    .then((data) => {
-      res.json({
-        accessToken: data.body.access_token
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.sendStatus(400);
-    });
-  console.log(accessToken);
 });
 
 export default router;
