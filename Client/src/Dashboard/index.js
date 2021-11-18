@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { ListBox } from 'primereact/listbox';
 import { Link } from 'react-router-dom';
-import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import Header from '../Components/Header.js';
+import PlaylistCard from './components/playlistCard.js';
 
 import './styles.css';
 import img_path from './public/logo192.png';
@@ -22,7 +22,7 @@ export default class index extends Component {
       selectedUserPlaylist: null,
       selectedUserForgroupsandFriends: null,
       selectedItem: null,
-      data_cards: [],
+      playlistCards: [],
       isVisibleUserPlayLists: true,
       isVisibleGroupPlayLists: false,
       isVisibleFriendPlayLists: false
@@ -200,85 +200,13 @@ export default class index extends Component {
 
     if (temp_data.length === 0) return;
 
+    let allPlaylists = [];
     temp_data[0].forEach((d) => {
-      // console.log(d.genre);
-      if (d.genre === 'bluesMusic') blues.push(d);
-      else if (d.genre === 'rockMusic') rock.push(d);
-      else if (d.genre === 'jazzMusic') jazz.push(d);
-      else if (d.genre === 'soulMusic') soul.push(d);
-      else if (d.genre === 'rocknrollMusic') rocknroll.push(d);
-      else if (d.genre === 'hiphopMusic') hip.push(d);
+      allPlaylists.push(d);
     });
-
-    return (
-      <span className="container-playlistcard">
-        {rock.map((d) => (
-          <Card
-            className="container-card"
-            title={d.name}
-            //subTitle={"Genre: " + d.genre}
-            style={{ width: '12em', height: 'auto', margin: '7px' }}
-            header={this.cardHeader(img_rock)}
-          >
-            {d.collaborators.length > 0 && (
-              <div>Collaborators: {d.collaborators.join(', ')}</div>
-            )}
-          </Card>
-        ))}
-        {jazz.map((d) => (
-          <Card
-            className="container-card"
-            title={d.name}
-            //subTitle={"Genre: " + d.genre}
-            style={{ width: '12em', height: 'auto', margin: '7px' }}
-            header={this.cardHeader(img_jazz)}
-          >
-            {d.collaborators.length > 0 && (
-              <div>Collaborators: {d.collaborators.join(', ')}</div>
-            )}
-          </Card>
-        ))}
-        {soul.map((d) => (
-          <Card
-            className="container-card"
-            title={d.name}
-            //subTitle={"Genre: " + d.genre}
-            style={{ width: '12em', height: 'auto', margin: '7px' }}
-            header={this.cardHeader(img_soul)}
-          >
-            {d.collaborators.length > 0 && (
-              <div>Collaborators: {d.collaborators.join(', ')}</div>
-            )}
-          </Card>
-        ))}
-        {rocknroll.map((d) => (
-          <Card
-            className="container-card"
-            title={d.name}
-            //subTitle={"Genre: " + d.genre}
-            style={{ width: '12em', height: 'auto', margin: '7px' }}
-            header={this.cardHeader(img_rnr)}
-          >
-            {d.collaborators.length > 0 && (
-              <div>Collaborators: {d.collaborators.join(', ')}</div>
-            )}
-          </Card>
-        ))}
-        {hip.map((d) => (
-          <Card
-            className="container-card"
-            title={d.name}
-            //subTitle={"Genre: " + d.genre}
-            style={{ width: '12em', height: 'auto', margin: '7px' }}
-            header={this.cardHeader(img_hip)}
-          >
-            {d.collaborators.length > 0 && (
-              <div>Collaborators: {d.collaborators.join(', ')}</div>
-            )}
-          </Card>
-        ))}
-      </span>
-    );
+    return allPlaylists.map((playlist) => {
+      return <PlaylistCard key={playlist.code} playlist={playlist} />;
+    });
   }
   userSearchModule(listofplaylists) {
     console.log(listofplaylists);
@@ -331,7 +259,6 @@ export default class index extends Component {
   };
 
   render() {
-    var that = this;
     return (
       <Fragment>
         <div className="container-main">
@@ -384,9 +311,7 @@ export default class index extends Component {
                   ></Link>
                 </span>
               </div>
-              {this.state.isVisibleUserPlayLists
-                ? this.cardPlaylistTemplate(this.state.selectedUserPlaylist)
-                : this.cardPlaylistTemplate('IkeLyons')}
+              {this.cardPlaylistTemplate(this.state.selectedUserPlaylist)}
             </div>
           </div>
         </div>
