@@ -276,13 +276,13 @@ export default class index extends Component {
             <div className="cnt-alllists">
               <div className="cnt-listheader">
                 <span>
-                  <p>MY Playlists</p>
+                  <p>My Playlists</p>
                 </span>
                 <span>
                   {' '}
                   <Link
                     to={'/Melody/ProfileView'}
-                    className="pi pi-calendar-plus"
+                    className="pi pi-user"
                   ></Link>
                 </span>
               </div>

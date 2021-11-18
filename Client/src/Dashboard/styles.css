@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
-
 .container-main {
   height: 100%;
   width: 100%;
   position: relative;
   display: inline-flex;
+  background: #f8f9fa;
 }
 
 .box {
@@ -65,19 +64,10 @@
   width: 30em;
   height: 2.5em;
   color: white;
-  /* border-radius: 55px; */
-  font-family: 'Dancing Script', cursive;
-  font-size: 2em;
-}
-.cnt-listheader > span:nth-child(1):hover {
-  background-color: white;
-  color: cornflowerblue;
-  /* border: 4px double; */
   border-radius: 55px;
-  border-color: cornflowerblue;
-  font-family: 'Dancing Script', cursive;
   font-size: 2em;
 }
+
 .cnt-listheader > span:nth-child(2) {
   float: right;
   background: darkslateblue;
@@ -91,12 +81,6 @@
   cursor: pointer;
 }
 
-.cnt-listheader > span:nth-child(2):hover {
-  /* font-size: xx-large; */
-  color: white;
-  background: lightcoral;
-}
-
 .p-card .p-card-body {
   padding: 1rem;
   background: lightskyblue;
@@ -108,7 +92,6 @@
   padding: 1rem;
   background: darkslateblue;
   color: white;
-  font-family: 'Dancing Script', cursive;
   cursor: pointer;
 }
 
