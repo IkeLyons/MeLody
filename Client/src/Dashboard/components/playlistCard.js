@@ -34,7 +34,7 @@ export default class playlistCard extends Component {
           <div>
             Collaborators: {this.props.playlist.collaborators.join(', ')}
           </div>
-        )} 
+        )}
       </Card>
     );
   }
