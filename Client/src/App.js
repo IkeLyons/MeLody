@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Switch,
   Route,
   BrowserRouter as Router,
-  withRouter,
-} from "react-router-dom";
+  withRouter
+} from 'react-router-dom';
 
-import Login from "./Login";
-import Dashboard from "./Dashboard";
-import ProfileView from "./ProfileView";
-import ProtectedRoute from "./Components/ProtectedRoute";
+import Login from './Login';
+import Dashboard from './Dashboard';
+import ProfileView from './ProfileView';
+import ProtectedRoute from './Components/ProtectedRoute';
 // import sidebar from './Dashboard/components/sidebar';
 
 class App extends Component {

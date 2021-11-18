@@ -1,10 +1,10 @@
-import React from "react";
-import "./profileview.css";
-import img_profile from "./Dashboard/public/shin.png";
+import React from 'react';
+import './profileview.css';
+import img_profile from './Dashboard/public/shin.png';
 
-import { Card } from "primereact/card";
-import { Button } from "primereact/button";
-import { OrderList } from "primereact/orderlist";
+import { Card } from 'primereact/card';
+import { Button } from 'primereact/button';
+import { OrderList } from 'primereact/orderlist';
 
 class ProfileView extends React.Component {
   constructor(props) {
@@ -12,95 +12,95 @@ class ProfileView extends React.Component {
 
     this.state = {
       products: [],
-      title: "your title",
-      desc: "your description",
+      title: 'your title',
+      desc: 'your description'
     };
 
     this.data = [
       {
-        id: "1000",
-        code: "f230fh0g3",
-        name: "My Workout",
-        description: "Product Description",
-        image: "ironmaiden_rock.jpeg",
+        id: '1000',
+        code: 'f230fh0g3',
+        name: 'My Workout',
+        description: 'Product Description',
+        image: 'ironmaiden_rock.jpeg',
         price: 65,
-        category: "Rock Music",
+        category: 'Rock Music',
         quantity: 24,
-        inventoryStatus: "INSTOCK",
-        rating: 5,
+        inventoryStatus: 'INSTOCK',
+        rating: 5
       },
       {
-        id: "1001",
-        code: "nvklal433",
-        name: "study",
-        description: "Product Description",
-        image: "jazz.png",
+        id: '1001',
+        code: 'nvklal433',
+        name: 'study',
+        description: 'Product Description',
+        image: 'jazz.png',
         price: 72,
-        category: "Jazz Music",
+        category: 'Jazz Music',
         quantity: 61,
-        inventoryStatus: "INSTOCK",
-        rating: 4,
+        inventoryStatus: 'INSTOCK',
+        rating: 4
       },
       {
-        id: "1002",
-        code: "zz21cz3c1",
-        name: "The GoodNight Sleep",
-        description: "Product Description",
-        image: "soul.jpeg",
+        id: '1002',
+        code: 'zz21cz3c1',
+        name: 'The GoodNight Sleep',
+        description: 'Product Description',
+        image: 'soul.jpeg',
         price: 79,
-        category: "Soul Music",
+        category: 'Soul Music',
         quantity: 2,
-        inventoryStatus: "LOWSTOCK",
-        rating: 3,
+        inventoryStatus: 'LOWSTOCK',
+        rating: 3
       },
       {
-        id: "1003",
-        code: "244wgerg2",
-        name: "PaRTy Night",
-        description: "Product Description",
-        image: "rnr.jpeg",
+        id: '1003',
+        code: '244wgerg2',
+        name: 'PaRTy Night',
+        description: 'Product Description',
+        image: 'rnr.jpeg',
         price: 29,
-        category: "Rock n Roll Music",
+        category: 'Rock n Roll Music',
         quantity: 25,
-        inventoryStatus: "INSTOCK",
-        rating: 5,
+        inventoryStatus: 'INSTOCK',
+        rating: 5
       },
       {
-        id: "1004",
-        code: "h456wer53",
-        name: "PaRTy Night Friday",
-        description: "Product Description",
-        image: "rnr.jpeg",
+        id: '1004',
+        code: 'h456wer53',
+        name: 'PaRTy Night Friday',
+        description: 'Product Description',
+        image: 'rnr.jpeg',
         price: 15,
-        category: "Rock n Roll Music",
+        category: 'Rock n Roll Music',
         quantity: 73,
-        inventoryStatus: "INSTOCK",
-        rating: 4,
+        inventoryStatus: 'INSTOCK',
+        rating: 4
       },
       {
-        id: "1005",
-        code: "av2231fwg",
-        name: "PaRTy Night Sunday",
-        description: "Product Description",
-        image: "rnr.jpeg",
+        id: '1005',
+        code: 'av2231fwg',
+        name: 'PaRTy Night Sunday',
+        description: 'Product Description',
+        image: 'rnr.jpeg',
         price: 120,
-        category: "Rock n Roll Music",
+        category: 'Rock n Roll Music',
         quantity: 0,
-        inventoryStatus: "OUTOFSTOCK",
-        rating: 4,
+        inventoryStatus: 'OUTOFSTOCK',
+        rating: 4
       },
       {
-        id: "1006",
-        code: "bib36pfvm",
-        name: "Running",
-        description: "Product Description",
-        image: "hip.png",
+        id: '1006',
+        code: 'bib36pfvm',
+        name: 'Running',
+        description: 'Product Description',
+        image: 'hip.png',
         price: 32,
-        category: "Hip Hop Music",
+        category: 'Hip Hop Music',
         quantity: 5,
-        inventoryStatus: "LOWSTOCK",
-        rating: 3,
-      },
+        inventoryStatus: 'LOWSTOCK',
+        rating: 3
+      }
     ];
 
     this.itemTemplate = this.itemTemplate.bind(this);
@@ -109,7 +109,7 @@ class ProfileView extends React.Component {
   componentDidMount() {
     // this.productService.getProductsSmall().then(data => this.setState({ products: data }));
     this.setState({
-      products: this.data,
+      products: this.data
     });
   }
   itemTemplate(item) {
@@ -120,7 +120,7 @@ class ProfileView extends React.Component {
             src={`showcase/demo/images/product/${item.image}`}
             onError={(e) =>
               (e.target.src =
-                "https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png")
+                'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png')
             }
             alt={item.name}
           />
@@ -141,7 +141,7 @@ class ProfileView extends React.Component {
         src={img_profile}
         onError={(e) =>
           (e.target.src =
-            "https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png%27%7D />")
+            'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png%27%7D />')
         }
       />
     );
@@ -161,11 +161,11 @@ class ProfileView extends React.Component {
           <Card
             title="Mukesh Mohanty"
             subTitle="tHe Grim ReaPer"
-            style={{ width: "25em" }}
+            style={{ width: '25em' }}
             footer={footer}
             header={header}
           >
-            <p className="p-m-0" style={{ lineHeight: "1.5" }}>
+            <p className="p-m-0" style={{ lineHeight: '1.5' }}>
               Likes listening to Metal and Rock Music.
             </p>
           </Card>
@@ -177,7 +177,7 @@ class ProfileView extends React.Component {
                 value={this.state.products}
                 header="My Playlist"
                 dragdrop
-                listStyle={{ height: "40em", width: "25em" }}
+                listStyle={{ height: '40em', width: '25em' }}
                 dataKey="id"
                 itemTemplate={this.itemTemplate}
                 onChange={(e) => this.setState({ products: e.value })}
