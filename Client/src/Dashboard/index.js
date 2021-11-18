@@ -163,14 +163,7 @@ export default class index extends Component {
     }
 
     var data_playlists = this.usersPlayLists;
-
     var temp_data = [];
-    var blues = [];
-    var rock = [];
-    var jazz = [];
-    var rocknroll = [];
-    var soul = [];
-    var hip = [];
 
     Object.entries(data_playlists).forEach(([k, v]) => {
       // console.log(selected_user_name);
