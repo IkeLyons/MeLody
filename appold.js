@@ -1,23 +1,23 @@
-var express = require("express"); // Express web server framework
-var request = require("request"); // "Request" library
-var cors = require("cors");
-var querystring = require("querystring");
-var secrets = require("./secrets.json");
-var spotifyWebApi = require("spotify-web-api-node");
+var express = require('express'); // Express web server framework
+var request = require('request'); // "Request" library
+var cors = require('cors');
+var querystring = require('querystring');
+var secrets = require('./secrets.json');
+var spotifyWebApi = require('spotify-web-api-node');
 
 var client_id = secrets.client_id;
 var client_secret = secrets.client_secret;
-var redirect_uri = "http://localhost:3000";
+var redirect_uri = 'http://localhost:3000';
 var credentials = {
   clientId: client_id,
   clientSecret: client_secret,
-  redirectUri: redirect_uri,
+  redirectUri: redirect_uri
 };
 
 var app = express();
 app.use(cors());
 
-app.post("/login", (req, res) => {
+app.post('/login', (req, res) => {
   console.log(req.data);
   // let spotifyApi = new spotifyWebApi(credentials);
   // const code = req.body.code;
@@ -36,5 +36,5 @@ app.post("/login", (req, res) => {
   // console.log(accessToken);
 });
 
-console.log("Listening on 8888");
+console.log('Listening on 8888');
 app.listen(8888);
