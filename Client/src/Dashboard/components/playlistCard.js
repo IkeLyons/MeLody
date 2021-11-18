@@ -28,6 +28,7 @@ export default class playlistCard extends Component {
         className="container-card"
         title={this.props.playlist.name}
         style={{ width: '12em', height: 'auto', margin: '7px' }}
+        //need user defined image
         header={this.cardHeader(img_hip)}
       >
         {this.props.playlist.collaborators.length > 0 && (

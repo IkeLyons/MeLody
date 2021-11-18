@@ -6,6 +6,7 @@ import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { OrderList } from 'primereact/orderlist';
 
+// The profile view shows all the user's profile information.
 class ProfileView extends React.Component {
   constructor(props) {
     super(props);

@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { ListBox } from 'primereact/listbox';
 import { Link } from 'react-router-dom';
-import { Button } from 'primereact/button';
-import Header from '../Components/Header.js';
 import PlaylistCard from './components/playlistCard.js';
 
 import './styles.css';
 import img_path from './public/logo192.png';
 
+// The main component of the Dashboard, which displays friends, groups, and playlists
 export default class index extends Component {
   constructor(props) {
     super(props);
@@ -154,6 +153,7 @@ export default class index extends Component {
     );
   }
 
+  // Returns all of the playlist cards for the inputed username
   cardPlaylistTemplate(selected_user_name) {
     if (selected_user_name === null) return;
 

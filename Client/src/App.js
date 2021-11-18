@@ -10,8 +10,8 @@ import Login from './Login';
 import Dashboard from './Dashboard';
 import ProfileView from './ProfileView';
 import ProtectedRoute from './Components/ProtectedRoute';
-// import sidebar from './Dashboard/components/sidebar';
 
+// The base app contains all the routes for the application, which correspond to different views
 class App extends Component {
   render() {
     localStorage.clear();
