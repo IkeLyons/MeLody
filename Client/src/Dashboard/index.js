@@ -7,11 +7,6 @@ import PlaylistCard from './components/playlistCard.js';
 
 import './styles.css';
 import img_path from './public/logo192.png';
-import img_rock from './public/ironmaiden_rock.jpeg';
-import img_jazz from './public/jazz.png';
-import img_soul from './public/soul.jpeg';
-import img_hip from './public/hip.png';
-import img_rnr from './public/rnr.jpeg';
 
 export default class index extends Component {
   constructor(props) {
@@ -142,9 +137,6 @@ export default class index extends Component {
     this.setFriendsPlayLists = this.setFriendsPlayLists.bind(this);
   }
 
-  // componentDidMount(){
-  //     this.setState({username: localStorage.getItem('username')})
-  // }
   userPlaylistTemplate(option) {
     return (
       <div className="user-item">
@@ -162,17 +154,6 @@ export default class index extends Component {
     );
   }
 
-  cardHeader = (img_name) => (
-    <img
-      className="play-img"
-      alt="Card"
-      src={img_name}
-      onError={(e) =>
-        (e.target.src =
-          'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png')
-      }
-    />
-  );
   cardPlaylistTemplate(selected_user_name) {
     if (selected_user_name === null) return;
 
@@ -208,6 +189,7 @@ export default class index extends Component {
       return <PlaylistCard key={playlist.code} playlist={playlist} />;
     });
   }
+
   userSearchModule(listofplaylists) {
     console.log(listofplaylists);
     return (
@@ -311,7 +293,9 @@ export default class index extends Component {
                   ></Link>
                 </span>
               </div>
-              {this.cardPlaylistTemplate(this.state.selectedUserPlaylist)}
+              <span className="container-playlistcard">
+                {this.cardPlaylistTemplate(this.state.selectedUserPlaylist)}
+              </span>
             </div>
           </div>
         </div>
