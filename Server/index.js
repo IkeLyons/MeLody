@@ -15,6 +15,7 @@ app.use(morgan('dev'));
 app.use(express.static('public'));
 app.use(cors());
 
+// CORS settings
 app.use(function (request, response, next) {
   response.header('Access-Control-Allow-Origin', '*');
   response.header(
@@ -24,8 +25,10 @@ app.use(function (request, response, next) {
   next();
 });
 
+//Custom routes
 app.use('/', userLogin);
 app.use('/', spotifyLogin);
+
 app.listen(PORT, () =>
   console.log('Running server at http://localhost:' + PORT)
 );

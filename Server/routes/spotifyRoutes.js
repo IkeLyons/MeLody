@@ -37,11 +37,13 @@ const scopes = [
 ];
 const spotifyApi = new spotifyWebApi(credentials);
 
+// Send user to Spotify authorization page
 router.get('/api/spotifyLogin', (req, res) => {
   console.log('Spotify Login');
   res.redirect(spotifyApi.createAuthorizeURL(scopes));
 });
 
+//use code recieved from spotify to get access token
 router.get('/api/callback', (req, res) => {
   const error = req.query.error;
   const code = req.query.code;
@@ -69,7 +71,7 @@ router.get('/api/callback', (req, res) => {
       console.log(
         `Sucessfully retreived access token. Expires in ${expires_in} s.`
       );
-      //   res.send('Success! You can now close the window.');
+      //send user back to front end
       res.redirect('http://localhost:3000/Melody/Dashboard');
 
       setInterval(async () => {
