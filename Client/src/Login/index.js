@@ -113,6 +113,11 @@ export default class Login extends Component {
             label="Sign In"
             onClick={this.submitForm}
           />
+          <div>
+            <a href="http://localhost:4000/api/spotifyLogin">
+              Log In With Spotify
+            </a>
+          </div>
         </div>
 
         <div className="footer_login">

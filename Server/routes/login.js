@@ -66,7 +66,7 @@ router.post('/api/validateLogin', (req, res) => {
   }
 });
 
-router.post('/api/spotifylogin', (req, res) => {
+router.post('/api/spotifyLogin', (req, res) => {
   console.log(req.data);
   let spotifyApi = new spotifyWebApi(credentials);
   const code = req.body.code;

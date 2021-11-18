@@ -25,5 +25,5 @@ app.use(function (request, response, next) {
 
 app.use('/', userLogin);
 app.listen(PORT, () =>
-  console.log('Running server on port:http://localhost:${PORT}')
+  console.log('Running server at http://localhost:' + PORT)
 );
