@@ -70,7 +70,8 @@ router.get('/api/callback', (req, res) => {
       console.log(
         `Sucessfully retreived access token. Expires in ${expires_in} s.`
       );
-      res.send('Success! You can now close the window.');
+      //   res.send('Success! You can now close the window.');
+      res.redirect('http://localhost:3000/Melody/Dashboard');
 
       setInterval(async () => {
         const data = await spotifyApi.refreshAccessToken();
