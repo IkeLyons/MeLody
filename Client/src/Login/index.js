@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './style.css';
+// import './ButtonDemo.css';
 
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Messages } from 'primereact/messages';
 import { Message } from 'primereact/message';
+import { Password } from 'primereact/password';
+import { Link } from 'react-router-dom';
 
 export default class Login extends Component {
   constructor(props) {
@@ -13,11 +16,13 @@ export default class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      msg: ''
+      msg: '',
     };
+
     this.submitForm = this.submitForm.bind(this);
     this.showError = this.showError.bind(this);
     this.showPasswordError = this.showPasswordError.bind(this);
+    // this.verifySpotifyLogin = this.verifySpotifyLogin.bind(this);
   }
   showError(strerr) {
     this.msgs1.show([
@@ -70,8 +75,15 @@ export default class Login extends Component {
       });
   }
 
-  submitForm = async (event) => {
+  verifySpotifyLogin = () =>{
+
+    this.props.history.push('http://localhost:4000/api/spotifyLogin');
+    
+  }
+
+  submitForm(event){
     event.preventDefault();
+
 
     var data = {
       _username: this.state.username,
@@ -80,6 +92,7 @@ export default class Login extends Component {
     };
     console.log(data);
     this.verifyLogin(data);
+
   };
 
   render() {
@@ -99,25 +112,32 @@ export default class Login extends Component {
           </span>
 
           <span className="p-float-label">
-            <InputText
+            <Password
               id="username"
               value={this.state.password}
               onChange={(e) => this.setState({ password: e.target.value })}
+              toggleMask
             />
             <label htmlFor="username">Password</label>
           </span>
           <Button
-            id="login_btn"
             type="button"
-            className="p-button-outlined p-button-info"
+            // className="p-button-outlined p-button-info"
             label="Sign In"
             onClick={this.submitForm}
           />
-          <div>
-            <a href="http://localhost:4000/api/spotifyLogin">
-              Log In With Spotify
-            </a>
-          </div>
+
+          <Button className="p-button-success"
+            type="button"
+            style={{'width':'fit-content', 'padding':'.5em', 'margin-left':'1em'}}>
+              <a href = "http://localhost:4000/api/spotifyLogin" 
+              style={{'text-decoration':'none','color':'white'}}> Spotify Login </a>
+          </Button>
+         
+        </div>
+
+        <div className='container-signup'>
+          <Link to={'/SignUp'}>New to Melody ! Lets get Started.</Link>
         </div>
 
         <div className="footer_login">

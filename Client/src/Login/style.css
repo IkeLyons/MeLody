@@ -79,3 +79,35 @@
     display: inline-grid;
     font-family: 'Open Sans Condensed', sans-serif;
 }
+
+button .spotify_btn{
+    /* width: unset; */
+    padding: unset;
+    width: fit-content;
+    margin-left: 4em;
+    text-decoration: none;
+}
+
+.container-signup{
+    position: relative;
+    margin-top: 5em;
+    margin-left: 26em;
+}
+
+.container-signup a{
+    padding: 5px;
+    background: white;
+    border: 2px solid white;
+    border-radius: 25px;
+    text-decoration: none;
+}
+
+.container-signup a:hover{
+    padding: 7px;
+    font-size: large;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: unset;
+    color: white;
+    transition: 1s;
+}

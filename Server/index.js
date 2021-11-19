@@ -3,7 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import pg from 'pg';
 import userLogin from './routes/login.js';
-import spotifyLogin from './routes/spotifyRoutes.js';
+import spotifyLogin from './routes/spotifyRoutes.js'
 
 const PORT = 4000;
 
