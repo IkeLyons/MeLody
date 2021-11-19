@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import PlaylistModal from './playlistModal.js';
 import { Card } from 'primereact/card';
 import img_hip from '../public/hip.png';
 
@@ -7,7 +8,9 @@ export default class playlistCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      show: true
+    };
   }
 
   cardHeader = (img_name) => (
@@ -22,21 +25,31 @@ export default class playlistCard extends Component {
     />
   );
 
+  showPlaylistModal = e => {
+    this.setState({
+      show: !this.state.show
+    });
+  };
+
   render() {
     return (
-      <Card
-        className="container-card"
-        title={this.props.playlist.name}
-        style={{ width: '12em', height: 'auto', margin: '7px' }}
-        //need user defined image
-        header={this.cardHeader(img_hip)}
-      >
-        {this.props.playlist.collaborators.length > 0 && (
-          <div>
-            Collaborators: {this.props.playlist.collaborators.join(', ')}
-          </div>
-        )}
-      </Card>
+      <div>
+        <Card
+          className="container-card toggle-button"
+          title={this.props.playlist.name}
+          style={{ width: '12em', height: 'auto', margin: '7px' }}
+          //need user defined image
+          header={this.cardHeader(img_hip)}
+          onClick = {e => {this.showPlaylistModal();}}
+        >
+          {this.props.playlist.collaborators.length > 0 && (
+            <div>
+              Collaborators: {this.props.playlist.collaborators.join(', ')}
+            </div>
+          )}
+        </Card>
+        <PlaylistModal onClose={this.showPlaylistModal} show={this.state.show}/>
+      </div>
     );
   }
 }
