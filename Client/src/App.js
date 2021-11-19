@@ -21,13 +21,13 @@ class App extends Component {
         <div className="App">
           <Switch>
             <Route path="/Login" exact component={Login} />
-            <Route path='/SignUp' exact component={SignUp} />
+            <Route path="/SignUp" exact component={SignUp} />
             <ProtectedRoute
               path="/Melody/Dashboard"
               exact
               component={Dashboard}
             />
-            
+
             {<Route path="/Melody/ProfileView" exact component={ProfileView} />}
           </Switch>
         </div>

@@ -1,39 +1,29 @@
 import express from 'express';
 import { createRequire } from 'module';
 import connectDB from '../DB/connection.js';
-import LoginCollection from '../DB/models/logincollection.js'
+import LoginCollection from '../DB/models/logincollection.js';
 
 const require = createRequire(import.meta.url);
 const router = express.Router();
 
-
-
 connectDB();
 
-
-router.get('/api/app/getUsers', (req,res) =>{
-
-LoginCollection.find()
-  .then((result)=>{
+router.get('/api/app/getUsers', (req, res) => {
+  LoginCollection.find().then((result) => {
     res.send(result);
   });
-
 });
 
-router.get('/api/app/getUserByName', (req,res) =>{
-
-  LoginCollection.findOne({user_name:'Mukesh'})
-    .then((result)=>{
+router.get('/api/app/getUserByName', (req, res) => {
+  LoginCollection.findOne({ user_name: 'Mukesh' })
+    .then((result) => {
       console.log(result);
       res.send(result);
     })
-    .catch((err) =>{
+    .catch((err) => {
       console.log(err);
-    })
-  
-  });
-
-
+    });
+});
 
 router.post('/api/validateLogin', (req, res) => {
   var pass = {
@@ -56,29 +46,26 @@ router.post('/api/validateLogin', (req, res) => {
   var userpass = req.body._password;
   var is_Found = false;
 
-  LoginCollection.findOne({user_name: username})
-    .then((result)=>{
-      if(result === null){
+  LoginCollection.findOne({ user_name: username })
+    .then((result) => {
+      if (result === null) {
         res.status(402).send(incorrect_user);
-      }
-      else{
-        LoginCollection.findOne({user_name: username, password: userpass})
-          .then((respass) =>{
-            if(respass === null){
-              res.status(402).send(incorrect_pass);
-            }
-            else{
-              res.status(200).send(pass);
-            }
-          })
+      } else {
+        LoginCollection.findOne({
+          user_name: username,
+          password: userpass
+        }).then((respass) => {
+          if (respass === null) {
+            res.status(402).send(incorrect_pass);
+          } else {
+            res.status(200).send(pass);
+          }
+        });
       }
     })
-    .catch((err) =>{
+    .catch((err) => {
       console.log(err);
-    })
-
-
-
+    });
 
   // user_data.users.forEach((element) => {
   //   console.log(element.user_name);

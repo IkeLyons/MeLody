@@ -16,7 +16,7 @@ export default class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      msg: '',
+      msg: ''
     };
 
     this.submitForm = this.submitForm.bind(this);
@@ -75,15 +75,12 @@ export default class Login extends Component {
       });
   }
 
-  verifySpotifyLogin = () =>{
-
+  verifySpotifyLogin = () => {
     this.props.history.push('http://localhost:4000/api/spotifyLogin');
-    
-  }
+  };
 
-  submitForm(event){
+  submitForm(event) {
     event.preventDefault();
-
 
     var data = {
       _username: this.state.username,
@@ -92,8 +89,7 @@ export default class Login extends Component {
     };
     console.log(data);
     this.verifyLogin(data);
-
-  };
+  }
 
   render() {
     localStorage.setItem('isLogged', 'false');
@@ -127,16 +123,26 @@ export default class Login extends Component {
             onClick={this.submitForm}
           />
 
-          <Button className="p-button-success"
+          <Button
+            className="p-button-success"
             type="button"
-            style={{'width':'fit-content', 'padding':'.5em', 'margin-left':'1em'}}>
-              <a href = "http://localhost:4000/api/spotifyLogin" 
-              style={{'text-decoration':'none','color':'white'}}> Spotify Login </a>
+            style={{
+              width: 'fit-content',
+              padding: '.5em',
+              'margin-left': '1em'
+            }}
+          >
+            <a
+              href="http://localhost:4000/api/spotifyLogin"
+              style={{ 'text-decoration': 'none', color: 'white' }}
+            >
+              {' '}
+              Spotify Login{' '}
+            </a>
           </Button>
-         
         </div>
 
-        <div className='container-signup'>
+        <div className="container-signup">
           <Link to={'/SignUp'}>New to Melody ! Lets get Started.</Link>
         </div>
 
