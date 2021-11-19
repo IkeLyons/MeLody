@@ -25,7 +25,7 @@ export default class playlistCard extends Component {
     />
   );
 
-  showPlaylistModal = e => {
+  showPlaylistModal = (e) => {
     this.setState({
       show: !this.state.show
     });
@@ -40,7 +40,9 @@ export default class playlistCard extends Component {
           style={{ width: '12em', height: 'auto', margin: '7px' }}
           //need user defined image
           header={this.cardHeader(img_hip)}
-          onClick = {e => {this.showPlaylistModal();}}
+          onClick={(e) => {
+            this.showPlaylistModal();
+          }}
         >
           {this.props.playlist.collaborators.length > 0 && (
             <div>
@@ -48,7 +50,10 @@ export default class playlistCard extends Component {
             </div>
           )}
         </Card>
-        <PlaylistModal onClose={this.showPlaylistModal} show={this.state.show}/>
+        <PlaylistModal
+          onClose={this.showPlaylistModal}
+          show={this.state.show}
+        />
       </div>
     );
   }
