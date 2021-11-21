@@ -26,17 +26,27 @@ export default class playlistCard extends Component {
   );
 
   showPlaylistModal = (e) => {
-    console.log('showPlaylistModal');
+    console.log('show');
     this.setState({
-      show: !this.state.show
+      show: true
     });
+  };
+
+  hidePlaylistModal = (e) => {
+    console.log('hide');
+    this.setState({
+      show: false
+    });
+    console.log(this.state.show);
   };
 
   render() {
     return (
       <div
         onClick={(e) => {
-          this.showPlaylistModal();
+          if (!this.state.show) {
+            this.showPlaylistModal();
+          }
         }}
       >
         <Card
@@ -53,7 +63,7 @@ export default class playlistCard extends Component {
           )}
         </Card>
         <PlaylistModal
-          onClose={this.showPlaylistModal}
+          onClose={this.hidePlaylistModal}
           show={this.state.show}
         />
       </div>
