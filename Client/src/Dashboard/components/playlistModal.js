@@ -6,17 +6,18 @@ export default class PlaylistModal extends Component {
     super(props);
 
     this.state = {};
+    console.log(this.props.children);
   }
   onClose = (e) => {
     this.props.onClose && this.props.onClose(e);
   };
   render() {
-    if (!this.props.show) {
-      return null;
-    }
+    const showHideClassName = this.props.show
+      ? 'playlist-modal-cnt display-block'
+      : 'playlist-modal-cnt display-none';
     return (
       <Fragment>
-        <div className="playlist-modal-cnt">
+        <div className={showHideClassName}>
           <div className="playlist-content">{this.props.children}</div>
           <div className="actions">
             <Button
