@@ -89,4 +89,39 @@ router.get('/api/callback', (req, res) => {
     });
 });
 
+//First get the client access token to be able to search for songs
+spotifyApi
+  .clientCredentialsGrant()
+  .then(function (result) {
+    console.log('Access token is: ' + result.body.access_token);
+    spotifyApi.setAccessToken(result.body.access_token);
+  })
+  .catch(function (err) {
+    console.log(err);
+  });
+
+router.post('/api/song', (req, res) => {
+  console.log('Search for song');
+  spotifyApi
+    .searchTracks(req.body.song)
+    .then(function (data) {
+      // Print some information about the results
+      console.log('I got ' + data.body.tracks.total + ' results!');
+
+      // Go through the first page of results
+      var firstPage = data.body.tracks.items;
+      console.log(
+        'The tracks in the first page are (popularity in parentheses):'
+      );
+
+      firstPage.forEach(function (track, index) {
+        console.log(index + ': ' + track.name + ' (' + track.popularity + ')');
+      });
+      res.status(200).send({ message: data.body.tracks.items });
+    })
+    .catch(function (err) {
+      console.log('Something went wrong:', err.message);
+    });
+});
+
 export default router;
