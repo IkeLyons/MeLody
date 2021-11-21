@@ -26,18 +26,15 @@ export default class playlistCard extends Component {
   );
 
   showPlaylistModal = (e) => {
-    console.log('show');
     this.setState({
       show: true
     });
   };
 
   hidePlaylistModal = (e) => {
-    console.log('hide');
     this.setState({
       show: false
     });
-    console.log(this.state.show);
   };
 
   render() {

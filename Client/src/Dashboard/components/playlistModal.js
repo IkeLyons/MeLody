@@ -15,7 +15,6 @@ export default class PlaylistModal extends Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
     var data = {
       song: this.state.value
@@ -49,7 +48,6 @@ export default class PlaylistModal extends Component {
     const showHideClassName = this.props.show
       ? 'playlist-modal-cnt display-block'
       : 'playlist-modal-cnt display-none';
-    console.log(showHideClassName);
     return (
       <Fragment>
         <div className={showHideClassName}>
