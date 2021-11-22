@@ -3,7 +3,6 @@ import SongInfoBar from './songInfoBar.js';
 import { Button } from 'primereact/button';
 import playlist_img from '../public/hip.png';
 import img_dummy from '../public/logo192.png';
-import SpotifySong from './spotifySong.js';
 
 export default class PlaylistModal extends Component {
   constructor(props) {
@@ -15,9 +14,9 @@ export default class PlaylistModal extends Component {
       name: 'longDrive'
     };
     this.playlistSongs = [
-      { songImage: '', songTitle: 'The Show Goes On', artist: 'Lupe Fiasco' },
-      { songImage: '', songTitle: 'The Show Goes On', artist: 'Lupe Fiasco' },
-      { songImage: '', songTitle: 'All of the Lights', artist: 'Kanye West' }
+      { songImage: '', songTitle: 'The Show Goes On', artist: 'Lupe Fiasco', album: 'stuff', time: 180000 },
+      { songImage: '', songTitle: 'The Show Goes On', artist: 'Lupe Fiasco', album: 'stuff', time: 260999 },
+      { songImage: '', songTitle: 'All of the Lights', artist: 'Kanye West', album: '', time: 100000 }
     ];
     this.spotifySongs = [];
 
@@ -61,13 +60,18 @@ export default class PlaylistModal extends Component {
         else if (response.status === 402) that.showError(data.message);
         else {
           console.log(data.message);
+          let responseImage = data.message[0]['album']['images'][0]['url'];
+          let responseAlbum = data.message[0]['album']['name']
           let responseTitle = data.message[0]['name'];
           let responseArtist = data.message[0]['artists'][0]['name'];
+          let responseTime = data.message[0]['duration_ms']
           let responseLink = data.message[0]['href'];
           let song = {
-            songImage: '',
+            songImage: responseImage,
             songTitle: responseTitle,
-            artist: responseArtist
+            artist: responseArtist,
+            album: responseAlbum,
+            time: responseTime
           };
           that.playlistSongs.push(song);
           that.setState({ value: '' });

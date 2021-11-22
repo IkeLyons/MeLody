@@ -129,8 +129,9 @@
   position: fixed;
   width: 70vw;
   height: 100vh;
-  left: 56%;
+  margin-left: 35.4vw;
   top: 50%;
+  padding: 5px;
   transform: translate(-50%, -50%);
   background: #848484/*rgba(0, 0, 0, 0.6)*/;
   border-radius: 10px;
@@ -147,7 +148,7 @@
 .playlist-modal-search form {
   display:flex;
   flex-direction:row;
-  border:1px black;
+  border: none;
   padding:2px;
 }
 
@@ -168,39 +169,60 @@
   overflow-y: scroll;
   overflow-x: hidden;
   position: relative;
-  display: block;
-  width: 60vw;
-  height: 60%;
-  min-height: 400px;
-  min-width: 400px;
-  margin: 0 auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  padding-bottom: 20px;
-  background-color: #fff;
-  align-self: center;
-  box-shadow: 0 12px 25px 0 rgba(199, 175, 189, 0.25);
+  display: table; 
+  table-layout: fixed;
+  width: 100%;
+  border-collapse:separate;
+  border-spacing:0 15px;
+  border: none;
+  margin-left: -28%;
+  margin-right: 28%;
+  width: 156%;
+  height: auto;
+  border-radius: 4px; 
+  background-color: none;
   opacity: 1;
   transform: scale(0.6);
   transition: opacity 250ms 250ms ease, transform 300ms 250ms ease;
 }
 
-/*
-.playlist-content.off {
-  opacity: 0;
-  visibility: hidden;
-  filter: blur(8px);
-  transform: scale(0.33);
-  box-shadow: 1rem 0 0 rgba(0, 0, 0, 0.2);
+.playlist-content::-webkit-scrollbar {
+  width: 10px;
 }
-*/
+
+
+.playlist-content::-webkit-scrollbar-track {
+  background: #848484;
+}
+
+
+.playlist-content::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 3px;
+}
+
+
+.playlist-content::-webkit-scrollbar-thumb:hover {
+  background: gray;
+}
+
 .display-block {
-  display: block;
+  display: inline-block;
 }
 
 .display-none {
   display: none;
+}
+
+/* Song Bar display within playlists*/
+.song-info-cont {
+  display: table-row;
+  background: #E5E5E5;
+
+}
+
+.song-info-cont > *{
+  display: table-cell;
 }
 
 /* Side Bar configs */
