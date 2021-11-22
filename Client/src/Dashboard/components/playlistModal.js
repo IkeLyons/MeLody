@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Button } from 'primereact/button';
 import playlist_img from '../public/hip.png';
 import img_dummy from '../public/logo192.png';
-import "./playlistModalStyles.css";
+import './playlistModalStyles.css';
 
 export default class PlaylistModal extends Component {
   constructor(props) {
@@ -74,11 +74,16 @@ export default class PlaylistModal extends Component {
           <div className="song-artist">{song.artist}</div>
           <div className="song-album">{song.album}</div>
           <div className="song-length">
-          {this.millisToMinutesAndSeconds(song.time)}</div>
-          <Button icon="pi pi-times" className="p-button-rounded p-button-danger" 
-          style={{float: "right"}} onClick={() => this.removeSong(song.songTitle, song.artist)}/>
+            {this.millisToMinutesAndSeconds(song.time)}
+          </div>
+          <Button
+            icon="pi pi-times"
+            className="p-button-rounded p-button-danger"
+            style={{ float: 'right' }}
+            onClick={() => this.removeSong(song.songTitle, song.artist)}
+          />
         </div>
-       )
+      );
     });
   }
 
