@@ -1,13 +1,37 @@
 import React, { Component, Fragment } from 'react';
+import SongInfoBar from './songInfoBar.js';
 import { Button } from 'primereact/button';
+import playlist_img from '../public/hip.png';
+import img_dummy from '../public/logo192.png';
 
 export default class PlaylistModal extends Component {
   constructor(props) {
     super(props);
 
     this.state = { value: '' };
+    this.playlistData ={
+      image: '',
+      name:'longDrive'
+    }
+    this.playlistSongs =[
+        {songImage: '', songTitle: 'The Show Goes On', artist: 'Lupe Fiasco'},
+        {songImage: '', songTitle: 'The Show Goes On', artist: 'Lupe Fiasco'},
+        {songImage: '', songTitle: 'The Show Goes On', artist: 'Lupe Fiasco'},
+        {songImage: '', songTitle: 'The Show Goes On', artist: 'Lupe Fiasco'},
+        {songImage: '', songTitle: 'The Show Goes On', artist: 'Lupe Fiasco'}
+      ];
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.songInfoTemplate = this.songInfoTemplate.bind(this);
+    
+  }
+
+  songInfoTemplate(option){
+    var data_songs = this.playlistSongs;
+    return data_songs.map((song) => {
+      return <SongInfoBar song = {song}/>;
+    });
   }
 
   handleChange(event) {
@@ -51,22 +75,25 @@ export default class PlaylistModal extends Component {
     return (
       <Fragment>
         <div className={showHideClassName}>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              placeholder="Enter Song Name"
-              value={this.state.value}
-              onChange={this.handleChange}
-            />
-            <input type="submit" value="Submit" />
-          </form>
-          <div className="playlist-content">{this.props.children}</div>
-          <div className="actions" onClick={this.onClose}>
+          <div className = "search-close-header">
+            <form className = "playlist-modal-search" onSubmit={this.handleSubmit}>
+              <input
+                type="text"
+                placeholder="Enter Song Name"
+                value={this.state.value}
+                onChange={this.handleChange}
+              />
+              <Button className = "submit-button" type="submit" icon = "pi pi-search"/>
+            </form>
             <Button
-              icon="pi pi-times"
-              className="modal-close-button p-button-rounded p-button-help p-button-outlined"
+            onClick={this.onClose}
+            icon="pi pi-times"
+            className="modal-close-button"
             />
           </div>
+          <div className = "playlist-header">Playlist Image and Title</div>
+          <div className ="playlist-content">{this.songInfoTemplate(this.state.playlistSongs)}</div>
+
         </div>
       </Fragment>
     );
