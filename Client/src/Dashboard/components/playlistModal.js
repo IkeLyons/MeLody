@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import SongInfoBar from './songInfoBar.js';
 import { Button } from 'primereact/button';
 import playlist_img from '../public/hip.png';
 import img_dummy from '../public/logo192.png';
+import "./playlistModalStyles.css";
 
 export default class PlaylistModal extends Component {
   constructor(props) {
@@ -36,22 +36,50 @@ export default class PlaylistModal extends Component {
         time: 100000
       }
     ];
-    this.spotifySongs = [];
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.songInfoTemplate = this.songInfoTemplate.bind(this);
   }
 
+  // convert time returned from spotify api from ms to minutes and seconds
+  millisToMinutesAndSeconds(millis) {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+  }
+
+  // searches for a given song title and artist, removes any songs with that combo from playlist songs
+  removeSong(removedSongTitle, removedSongArtist) {
+    this.playlistSongs = this.playlistSongs.filter(function(el) {return el.songTitle !== removedSongTitle});
+    this.setState({ value:'' });
+  }
+
+  //creates an entry in the playlistModal containing one song, with the x button to remove that song from the playlist
   songInfoTemplate(option) {
     var data_songs = this.playlistSongs;
     return data_songs.map((song) => {
-      return <SongInfoBar song={song} />;
+      return (
+        <div className="song-info-cont">
+          <img
+            className="song-image"
+            alt={song.name}
+            src={song.songImage}
+            onError={(e) =>
+              (e.target.src =
+                'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png')
+            }
+          />
+          <div className="song-title">{song.songTitle}</div>
+          <div className="song-artist">{song.artist}</div>
+          <div className="song-album">{song.album}</div>
+          <div className="song-length">
+          {this.millisToMinutesAndSeconds(song.time)}</div>
+          <Button icon="pi pi-times" className="p-button-rounded p-button-danger" 
+          style={{float: "right"}} onClick={() => this.removeSong(song.songTitle, song.artist)}/>
+        </div>
+       )
     });
-  }
-
-  addPlaylistSong(song) {
-    this.playlistSongs.push(song);
   }
 
   handleChange(event) {
