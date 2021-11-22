@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Button } from 'primereact/button';
 import playlist_img from '../public/hip.png';
 import img_dummy from '../public/logo192.png';
-import "./playlistModalStyles.css";
+import './playlistModalStyles.css';
 
 export default class PlaylistModal extends Component {
   constructor(props) {
@@ -51,8 +51,10 @@ export default class PlaylistModal extends Component {
 
   // searches for a given song title and artist, removes any songs with that combo from playlist songs
   removeSong(removedSongTitle, removedSongArtist) {
-    this.playlistSongs = this.playlistSongs.filter(function(el) {return el.songTitle !== removedSongTitle});
-    this.setState({ value:'' });
+    this.playlistSongs = this.playlistSongs.filter(function (el) {
+      return el.songTitle !== removedSongTitle;
+    });
+    this.setState({ value: '' });
   }
 
   //creates an entry in the playlistModal containing one song, with the x button to remove that song from the playlist
@@ -74,11 +76,16 @@ export default class PlaylistModal extends Component {
           <div className="song-artist">{song.artist}</div>
           <div className="song-album">{song.album}</div>
           <div className="song-length">
-          {this.millisToMinutesAndSeconds(song.time)}</div>
-          <Button icon="pi pi-times" className="p-button-rounded p-button-danger" 
-          style={{float: "right"}} onClick={() => this.removeSong(song.songTitle, song.artist)}/>
+            {this.millisToMinutesAndSeconds(song.time)}
+          </div>
+          <Button
+            icon="pi pi-times"
+            className="p-button-rounded p-button-danger"
+            style={{ float: 'right' }}
+            onClick={() => this.removeSong(song.songTitle, song.artist)}
+          />
         </div>
-       )
+      );
     });
   }
 
