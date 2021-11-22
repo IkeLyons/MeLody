@@ -51,8 +51,11 @@ export default class PlaylistModal extends Component {
 
   // searches for a given song title and artist, removes any songs with that combo from playlist songs
   removeSong(removedSongTitle, removedSongArtist) {
-    this.playlistSongs = this.playlistSongs.filter(el => (el.songTitle !== removedSongTitle || el.artist !== removedSongArtist));
-    this.setState({ value:'' });
+    this.playlistSongs = this.playlistSongs.filter(
+      (el) =>
+        el.songTitle !== removedSongTitle || el.artist !== removedSongArtist
+    );
+    this.setState({ value: '' });
   }
 
   //creates an entry in the playlistModal containing one song, with the x button to remove that song from the playlist
