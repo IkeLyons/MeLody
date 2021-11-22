@@ -3,7 +3,7 @@ import SongInfoBar from './songInfoBar.js';
 import { Button } from 'primereact/button';
 import playlist_img from '../public/hip.png';
 import img_dummy from '../public/logo192.png';
-import SpotifySong from './spotifySong.js'
+import SpotifySong from './spotifySong.js';
 
 export default class PlaylistModal extends Component {
   constructor(props) {
@@ -61,12 +61,16 @@ export default class PlaylistModal extends Component {
         else if (response.status === 402) that.showError(data.message);
         else {
           console.log(data.message);
-          let responseTitle = data.message[0]["name"];
-          let responseArtist = data.message[0]["artists"][0]["name"];
-          let responseLink = data.message[0]["href"];
-          let song = {songImage: '', songTitle: responseTitle, artist: responseArtist};
+          let responseTitle = data.message[0]['name'];
+          let responseArtist = data.message[0]['artists'][0]['name'];
+          let responseLink = data.message[0]['href'];
+          let song = {
+            songImage: '',
+            songTitle: responseTitle,
+            artist: responseArtist
+          };
           that.playlistSongs.push(song);
-          that.setState({ value:'' });
+          that.setState({ value: '' });
         }
       });
     });
