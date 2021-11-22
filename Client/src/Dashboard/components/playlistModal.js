@@ -14,9 +14,27 @@ export default class PlaylistModal extends Component {
       name: 'longDrive'
     };
     this.playlistSongs = [
-      { songImage: '', songTitle: 'The Show Goes On', artist: 'Lupe Fiasco', album: 'stuff', time: 180000 },
-      { songImage: '', songTitle: 'The Show Goes On', artist: 'Lupe Fiasco', album: 'stuff', time: 260999 },
-      { songImage: '', songTitle: 'All of the Lights', artist: 'Kanye West', album: '', time: 100000 }
+      {
+        songImage: '',
+        songTitle: 'The Show Goes On',
+        artist: 'Lupe Fiasco',
+        album: 'stuff',
+        time: 180000
+      },
+      {
+        songImage: '',
+        songTitle: 'The Show Goes On',
+        artist: 'Lupe Fiasco',
+        album: 'stuff',
+        time: 260999
+      },
+      {
+        songImage: '',
+        songTitle: 'All of the Lights',
+        artist: 'Kanye West',
+        album: '',
+        time: 100000
+      }
     ];
     this.spotifySongs = [];
 
@@ -61,10 +79,10 @@ export default class PlaylistModal extends Component {
         else {
           console.log(data.message);
           let responseImage = data.message[0]['album']['images'][0]['url'];
-          let responseAlbum = data.message[0]['album']['name']
+          let responseAlbum = data.message[0]['album']['name'];
           let responseTitle = data.message[0]['name'];
           let responseArtist = data.message[0]['artists'][0]['name'];
-          let responseTime = data.message[0]['duration_ms']
+          let responseTime = data.message[0]['duration_ms'];
           let responseLink = data.message[0]['href'];
           let song = {
             songImage: responseImage,
