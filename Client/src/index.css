@@ -16,3 +16,8 @@ code {
   display: grid;
   grid-template-columns: auto auto auto;
 }
+.App{
+  /* display: inline-flex; */
+  width: 100%;
+  height:auto;
+}

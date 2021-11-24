@@ -18,4 +18,16 @@
         min-width: 0;
     }
 }
+
+
+.dvlogin{
+    background: blueviolet;
+    padding: 15px;
+}
+.lnkLogin{
+    position: relative;
+    margin-left: 10em;
+    text-decoration: none;
+    color: white;
+}
              

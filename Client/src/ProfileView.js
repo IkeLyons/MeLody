@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './profileview.css';
 import img_profile from './Dashboard/public/shin.png';
+import Header from './Components/Header';
 
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { OrderList } from 'primereact/orderlist';
+import { InputText } from 'primereact/inputtext';
 
 // The profile view shows all the user's profile information.
 class ProfileView extends React.Component {
@@ -14,7 +16,8 @@ class ProfileView extends React.Component {
     this.state = {
       products: [],
       title: 'your title',
-      desc: 'your description'
+      desc: 'your description',
+      editable: false,
     };
 
     this.data = [
@@ -105,6 +108,8 @@ class ProfileView extends React.Component {
     ];
 
     this.itemTemplate = this.itemTemplate.bind(this);
+    this.editInfo = this.editInfo.bind(this);
+    this.saveChange = this.saveChange.bind(this);
   }
 
   componentDidMount() {
@@ -113,6 +118,24 @@ class ProfileView extends React.Component {
       products: this.data
     });
   }
+
+  editInfo = (e) =>{
+    e.preventDefault();
+    this.setState({
+      editable: true
+    });
+
+  }
+  saveChange = (e) =>{
+    e.preventDefault();
+    this.setState({
+      editable: false
+    });
+    alert('saving')
+    this.toast.show({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
+  }
+
+
   itemTemplate(item) {
     return (
       <div className="product-item">
@@ -151,24 +174,32 @@ class ProfileView extends React.Component {
         <Button
           label="Edit"
           icon="pi pi-user-edit"
-          className="p-button-secondary p-ml-2 p-col-4"
+          className="footer-btn p-button-secondary p-ml-2 p-col-4"
+          onClick={this.editInfo}
         />
-        <Button className="p-col-4" label="Save" icon="pi pi-check" />
+        <Button className="footer-btn p-col-4" label="Save" icon="pi pi-check" onClick={this.saveChange}/>
       </div>
     );
     return (
+      <Fragment>
+      <Header stitle={'User Profile'}/>
       <div className="pv-container p-d-flex p-jc-center">
         <div className="p-mr-2">
           <Card
             title="Mukesh Mohanty"
             subTitle="tHe Grim ReaPer"
             style={{ width: '25em' }}
+           
             footer={footer}
             header={header}
-          >
-            <p className="p-m-0" style={{ lineHeight: '1.5' }}>
-              Likes listening to Metal and Rock Music.
-            </p>
+          >{
+            this.state.editable ? 
+            <InputText className=" ipdesc p-m-0" style={{ lineHeight: '1.5' }}  value={this.state.desc}
+            onChange={(e) => this.setState({ desc: e.target.value })}>
+            </InputText> :
+            <p>{this.state.desc}</p>
+            }
+            
           </Card>
         </div>
         <div>
@@ -187,6 +218,7 @@ class ProfileView extends React.Component {
           </div>
         </div>
       </div>
+      </Fragment>
     );
   }
 }

@@ -1,11 +1,23 @@
 import express from 'express';
 import { createRequire } from 'module';
 import connectDB from '../DB/connection.js';
-import LoginCollection from '../DB/models/logincollection.js'
+import logincollection from '../DB/models/logincollection.js'
 
 const require = createRequire(import.meta.url);
 const router = express.Router();
+var pass = {
+  message: 'OK'
+};
+var incorrect_user = {
+  message: 'User is not registered.'
+};
+var incorrect_pass = {
+  message: 'Incorrect Password Entered.'
+};
 
+var error_message = {
+  message: 'Request Service Error.'
+};
 
 
 connectDB();
@@ -13,7 +25,7 @@ connectDB();
 
 router.get('/api/app/getUsers', (req,res) =>{
 
-LoginCollection.find()
+  logincollection.find()
   .then((result)=>{
     res.send(result);
   });
@@ -22,7 +34,7 @@ LoginCollection.find()
 
 router.get('/api/app/getUserByName', (req,res) =>{
 
-  LoginCollection.findOne({user_name:'Mukesh'})
+  logincollection.findOne({user_name:'Mukesh'})
     .then((result)=>{
       console.log(result);
       res.send(result);
@@ -36,19 +48,7 @@ router.get('/api/app/getUserByName', (req,res) =>{
 
 
 router.post('/api/validateLogin', (req, res) => {
-  var pass = {
-    message: 'OK'
-  };
-  var incorrect_user = {
-    message: 'User is not registered.'
-  };
-  var incorrect_pass = {
-    message: 'Incorrect Password Entered.'
-  };
-
-  var error_message = {
-    message: 'Request Service Error.'
-  };
+  
 
   if (req.body._username.length === 0) res.status(400).send(error_message);
 
@@ -56,13 +56,13 @@ router.post('/api/validateLogin', (req, res) => {
   var userpass = req.body._password;
   var is_Found = false;
 
-  LoginCollection.findOne({user_name: username})
+  logincollection.findOne({user_name: username})
     .then((result)=>{
       if(result === null){
         res.status(402).send(incorrect_user);
       }
       else{
-        LoginCollection.findOne({user_name: username, password: userpass})
+        logincollection.findOne({user_name: username, password: userpass})
           .then((respass) =>{
             if(respass === null){
               res.status(402).send(incorrect_pass);
@@ -77,24 +77,39 @@ router.post('/api/validateLogin', (req, res) => {
       console.log(err);
     })
 
+});
 
 
+router.post('/api/signUp/newuser',(req,res)=>{
+  var req_data = req.body;
+  console.log(req_data);
+  if (req_data.name.length === 0) res.status(400).send(error_message);
+  
+  
 
-  // user_data.users.forEach((element) => {
-  //   console.log(element.user_name);
-  //   if (user_name === element.user_name) {
-  //     is_Found = true;
-  //     if (user_pass === element.password) {
-  //       res.status(200).send(pass);
-  //     } else {
-  //       res.status(401).send(incorrect_pass);
-  //     }
-  //   }
-  // });
+  logincollection.findOne({user_name: req_data.name})
+    .then((result)=>{
+      if(result === null){
+        const signup = new logincollection({
+          user_name: req_data.name,
+          password: req_data.password,
+          email: req_data.email
+        })
 
-  // if (!is_Found) {
-  //   res.status(402).send(incorrect_user);
-  // }
+        signup.save()
+          .then((data)=>{
+            res.status(200).send("Sucessfully added to DB")
+          })
+          .catch((err)=>{
+            res.send(err);
+        })
+
+      }
+      else{
+        res.status(409).send("user is alrealy resgistered!!!");
+      }
+    })
+
 });
 
 export default router;

@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+
+.add-container{
+    height: 40em;
+    width: 100%;
+}
+.add-container .add-card{
+    margin: 5px 5em;
+    display: flex;
+}
+.p-float-label{
+    padding: 15px 0px;
+    display: grid;
+}
+
+.list-container{
+    padding: 10px 0;
+}
+.side-container{
+    background-color: dodgerblue;
+    width: 25%;
+    font-family: 'Poiret One', cursive;
+    color: white;
+    font-size: xx-large;
+    text-align: center;
+}
+.details-container{
+    margin: 5px 20px;
+}
+
+.submit-add{
+    width: 100%;
+    background: slateblue;
+    border: 1px solid slateblue;
+}

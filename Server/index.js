@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import pg from 'pg';
 import userLogin from './routes/login.js';
 import spotifyLogin from './routes/spotifyRoutes.js'
+import playlist from './routes/playlist.js'
 
 const PORT = 4000;
 
@@ -28,6 +29,7 @@ app.use(function (request, response, next) {
 //Custom routes
 app.use('/', userLogin);
 app.use('/', spotifyLogin);
+app.use('/playlist', playlist);
 
 app.listen(PORT, () =>
   console.log('Running server at http://localhost:' + PORT)

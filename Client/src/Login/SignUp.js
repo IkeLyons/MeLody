@@ -9,6 +9,7 @@ import { Dialog } from 'primereact/dialog';
 import { Divider } from 'primereact/divider';
 import { classNames } from 'primereact/utils';
 import { Button } from 'primereact/button';
+import { Link } from 'react-router-dom';
 
 import './signup.css';
 
@@ -44,7 +45,29 @@ export const SignUp = () => {
 
     const onSubmit = (data, form) => {
         setFormData(data);
-        setShowMessage(true);
+       
+        if(data !== null){
+            var req = new Request('http://localhost:4000/api/signUp/newuser', {
+                            method: 'POST',
+                            headers: new Headers({ 'Content-Type': 'application/json' }),
+                            body: JSON.stringify(data)
+                            });
+            fetch(req)
+                .then((res)=>{
+                    if(res.status === 409){
+                        alert("User Already Present in the DB");
+                    }
+                    else if(res.status === 200){
+                        setShowMessage(true);
+                    }
+
+                })
+                .catch((err)=>{
+                    console.log(err);
+                });
+
+
+        }
         console.log(data);
         form.restart();
     };
@@ -132,6 +155,9 @@ export const SignUp = () => {
                             )} />
 
                             <Button type="submit" label="Submit" className="p-mt-2" />
+                            <div className=" dvlogin p-mt-2">
+                                <Link className='lnkLogin' to={'/Login'}>Back To Login</Link>
+                            </div>
                         </form>
                     )} />
                 </div>

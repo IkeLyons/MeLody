@@ -1,40 +1,92 @@
-.container-head{
-    display: flex;
-    background-color: black;
-    margin: 0px;
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+a{
+    text-decoration: none;
+}
+.header-card{
+    display: inline-flex;
+    height: 150px;
     width: 100%;
-    min-height: 120px;
-    color:white;
-    font-size: xx-large;
-    word-spacing: 5px;
+    background: darkslateblue;
+}
+.card{
+    display: block;
+    margin-top: 4em;
+    margin-left: 15em;
+}
+
+.p-tabmenu .p-tabmenu-nav .p-tabmenuitem.p-highlight .p-menuitem-link {
+    background: #ffffff;
+    border-color: #e72623;
+    color: #e72623;
+    border-radius: 20px;
+}
+.p-tabmenu .p-tabmenu-nav {
+    border-radius: 20px;
+}
+.p-tabmenuitem .p-highlight{
+    color: unset;
+}
+
+.card-logo{
+    margin: 2em;
+    float: left;
+    /* height: 12em; */
+    width: 10em;
+}
+.card-name{
+    height: max-content;
+    position: relative;
+    font-size: 3em;
+
+    color: white;
+    font-family: 'Poiret One', cursive;
+    padding: 0 20px;
     text-align: center;
 }
-
-.container-head h1{
+.rpi-logo{
+    width: 100%;
+    height: initial;
+    overflow: auto;
     position: relative;
-    left:500px;
+    top: 25px;
+    border-right: 1px solid #ffffff;
+}
+.homebar a{
+    height: 40px;
+    width: fit-content;
+    margin: 5px;
+    padding: 15px;
+    text-decoration: none;
+    color: white;
+    font-size: medium;
+    border-bottom: .5px solid red;
+    border-top: .5px solid red;
+    transition: border-bottom 1s, border-top 1s, color 1s;
+
+}
+.homebar a:hover{
+    border-bottom: 8px solid lightsalmon;
+    color: slateblue;
+    background-color: white;
+    border-top: 1px solid lightsalmon;
+}
+.module-card{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    background-color: rgb(37, 62, 107);
+    padding-left: 105vh;
+    align-items: center;
+}
+.module-card a{
+    color: cornflowerblue;
+    /* height: 60px; */
     text-align: center;
-    word-spacing: 5px;
-    transition: word-spacing 1s;
+    padding: 0 4px;
+    align-content: center;
+    float: right;
+    border-right: 1px solid white;
 }
-
-.container-head h1:hover{
-    word-spacing: 15px;
-    color: lightseagreen;
-}
-
-.container-head ul li{
-    display: inline-block;
-    padding: 5px;
-    position: relative;
-    left: -450px;
-    top:-15px;
-    font-size: 15px;
-    transition: font-size 1s;
-    color: lightskyblue;
-}
-
-.container-head ul li:hover{
-    font-size: 25px;
-    color: lightpink;
+.module-card a:hover{
+    color: white;
 }
