@@ -1,12 +1,14 @@
 import React, { Fragment } from 'react';
 import './profileview.css';
 import img_profile from './Dashboard/public/shin.png';
+
 import Header from './Components/Header';
 
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { OrderList } from 'primereact/orderlist';
 import { InputText } from 'primereact/inputtext';
+import { Toast } from 'primereact/toast';
 
 // The profile view shows all the user's profile information.
 class ProfileView extends React.Component {
@@ -22,90 +24,52 @@ class ProfileView extends React.Component {
 
     this.data = [
       {
-        id: '1000',
-        code: 'f230fh0g3',
-        name: 'My Workout',
-        description: 'Product Description',
-        image: 'ironmaiden_rock.jpeg',
-        price: 65,
-        category: 'Rock Music',
-        quantity: 24,
-        inventoryStatus: 'INSTOCK',
-        rating: 5
+        id: ("61a42bdbc2b08d7f929292b1"),
+        user: 'Mukesh',
+        code: 'SD22',
+        name: 'Sad Songs',
+        category: 'bluesMusic',
+        collaborators: 'john',
+        image: 'https://i.scdn.co/image/ab67616d0000b273b0822610a715129583e6440c'
       },
       {
-        id: '1001',
-        code: 'nvklal433',
-        name: 'study',
-        description: 'Product Description',
-        image: 'jazz.png',
-        price: 72,
-        category: 'Jazz Music',
-        quantity: 61,
-        inventoryStatus: 'INSTOCK',
-        rating: 4
+        id: ("61a42cf2c2b08d7f929292b6"),
+        user: 'Mukesh',
+        code: 'LD32',
+        name: 'Long Drive',
+        category: 'rocknrollMusic',
+        collaborators: 'Ike, Brandon',
+        image: 'https://i.scdn.co/image/ab67616d0000b273b5d4730e54f84c66c70fe60a'
       },
       {
-        id: '1002',
-        code: 'zz21cz3c1',
-        name: 'The GoodNight Sleep',
-        description: 'Product Description',
-        image: 'soul.jpeg',
-        price: 79,
-        category: 'Soul Music',
-        quantity: 2,
-        inventoryStatus: 'LOWSTOCK',
-        rating: 3
+        id: ("61a47e20bd97dc802df853ff"),
+        user: 'Mukesh',
+        code: 'Study66',
+        name: 'Study Muzikk',
+        category: 'rocknrollMusic',
+        collaborators: 'Brandon,Ike',
+        image: 'https://i.scdn.co/image/ab67616d0000b2737636e1c9e67eaafc9f49aefd'
       },
       {
-        id: '1003',
-        code: '244wgerg2',
-        name: 'PaRTy Night',
-        description: 'Product Description',
-        image: 'rnr.jpeg',
-        price: 29,
-        category: 'Rock n Roll Music',
-        quantity: 25,
-        inventoryStatus: 'INSTOCK',
-        rating: 5
+        id: ("61a47e94bd97dc802df85411"),
+        user: 'Mukesh',
+        code: 'SL55',
+        name: 'Sleep Songs',
+        category: 'bluesMusic',
+        collaborators: 'Ike,john',
+        image: 'https://i.scdn.co/image/ab67616d0000b273a02d47ad3c5c53a9c7e9e081'
       },
       {
-        id: '1004',
-        code: 'h456wer53',
-        name: 'PaRTy Night Friday',
-        description: 'Product Description',
-        image: 'rnr.jpeg',
-        price: 15,
-        category: 'Rock n Roll Music',
-        quantity: 73,
-        inventoryStatus: 'INSTOCK',
-        rating: 4
-      },
-      {
-        id: '1005',
-        code: 'av2231fwg',
-        name: 'PaRTy Night Sunday',
-        description: 'Product Description',
-        image: 'rnr.jpeg',
-        price: 120,
-        category: 'Rock n Roll Music',
-        quantity: 0,
-        inventoryStatus: 'OUTOFSTOCK',
-        rating: 4
-      },
-      {
-        id: '1006',
-        code: 'bib36pfvm',
-        name: 'Running',
-        description: 'Product Description',
-        image: 'hip.png',
-        price: 32,
-        category: 'Hip Hop Music',
-        quantity: 5,
-        inventoryStatus: 'LOWSTOCK',
-        rating: 3
+        id: ("61a47f14bd97dc802df8542d"),
+        user: 'Mukesh',
+        code: 'RK76',
+        name: 'Rock Muzikk',
+        category: 'rockMusic',
+        collaborators: 'Brandon,Ike',
+        image: 'https://i.scdn.co/image/ab67616d0000b27376bc1c851462191faec76bf8'
       }
-    ];
+    ]
+
 
     this.itemTemplate = this.itemTemplate.bind(this);
     this.editInfo = this.editInfo.bind(this);
@@ -117,6 +81,11 @@ class ProfileView extends React.Component {
     this.setState({
       products: this.data
     });
+    if(localStorage.getItem('user_desc')!== null){
+      this.setState({
+        desc: localStorage.getItem('user_desc')
+      });
+    } 
   }
 
   editInfo = (e) =>{
@@ -131,8 +100,12 @@ class ProfileView extends React.Component {
     this.setState({
       editable: false
     });
-    alert('saving')
     this.toast.show({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
+  }
+  onChangeDesc(e){
+
+    this.setState({ desc: e.target.value})
+    localStorage.setItem('user_desc', e.target.value);
   }
 
 
@@ -141,11 +114,11 @@ class ProfileView extends React.Component {
       <div className="product-item">
         <div className="image-container">
           <img
-            src={`showcase/demo/images/product/${item.image}`}
-            onError={(e) =>
-              (e.target.src =
-                'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png')
-            }
+            src={item.image}
+            // onError={(e) =>
+            //   (e.target.src =
+            //     'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png')
+            // }
             alt={item.name}
           />
         </div>
@@ -183,6 +156,7 @@ class ProfileView extends React.Component {
     return (
       <Fragment>
       <Header stitle={'User Profile'}/>
+      <Toast ref={(el) => this.toast = el} />
       <div className="pv-container p-d-flex p-jc-center">
         <div className="p-mr-2">
           <Card
@@ -194,8 +168,8 @@ class ProfileView extends React.Component {
             header={header}
           >{
             this.state.editable ? 
-            <InputText className=" ipdesc p-m-0" style={{ lineHeight: '1.5' }}  value={this.state.desc}
-            onChange={(e) => this.setState({ desc: e.target.value })}>
+            <InputText className=" ipdesc p-m-0" style={{ lineHeight: '1.5' }}  value={localStorage.getItem('user_desc')=== null ? this.state.desc : localStorage.getItem('user_desc')}
+            onChange={(e) => this.onChangeDesc(e)}>
             </InputText> :
             <p>{this.state.desc}</p>
             }

@@ -1,0 +1,12 @@
+.logout-card{
+    margin: 10px 15px;
+}
+
+.logout-btn{
+    width: 6rem;
+    color: white;
+    text-decoration: unset;
+}
+.logout-btn > a{
+    color: white;
+}

@@ -106,7 +106,7 @@ export const SignUp = () => {
                 </div>
             </Dialog>
 
-            <div className="p-d-flex p-jc-center">
+            <div className="p-d-flex">
                 <div className="card">
                     <h5 className="p-text-center">Register</h5>
                     <Form onSubmit={onSubmit} initialValues={{ name: '', email: '', password: '', date: null, country: null, accept: false }} validate={validate} render={({ handleSubmit }) => (

@@ -8,6 +8,7 @@ import ProtectedRoute from './Components/ProtectedRoute';
 import SignUp from './Login/SignUp';
 import "./index.css"
 import AddPlaylist from './AddPlaylist';
+import Logoff from './Components/Logoff';
 
 // The base app contains all the routes for the application, which correspond to different views
 class App extends Component {
@@ -19,10 +20,11 @@ class App extends Component {
           <Switch>
             <Route path="/Login" exact component={Login} />
             <Route path='/SignUp' exact component={SignUp} />
-            {/* <ProtectedRoute path="/Melody/Dashboard" exact component={Dashboard}/> */}
+            {/* <Route path="/Melody/Dashboard" exact component={Dashboard}/> */}
             <ProtectedRoute path="/Melody/Dashboard" exact component={Dashboard}/> 
             <ProtectedRoute path="/Melody/AddPlaylist" exact component={AddPlaylist}/> 
-            {<ProtectedRoute path="/Melody/ProfileView" exact component={ProfileView} />}
+            <ProtectedRoute path="/Melody/ProfileView" exact component={ProfileView} />
+            <ProtectedRoute path="/Logoff" exact component={Logoff} />
           </Switch>
         </div>
       </Router>

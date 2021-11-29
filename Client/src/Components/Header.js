@@ -26,7 +26,7 @@ export class Header extends Component {
                         <Link className='pi pi-home' to='/Melody/Dashboard'>Home</Link>
                         <Link className='pi pi-fw pi-sliders-h' to='/Settigns'>Settings</Link>
                         <Link className='pi pi-fw pi-question' to='/AboutUs'>About</Link>
-                        <Link className='pi pi-fw pi-sign-out' to='/Logout'>LogOut</Link>
+                        <Link className='pi pi-fw pi-sign-out' to='/Logoff'>LogOut</Link>
                     </ul>
                 </div>
             </div>

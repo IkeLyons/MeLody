@@ -23,10 +23,7 @@ const playlistSchema = new Schema({
     type:String,
     required: false
 },
-  songs:{
-   type:String,
-   required: true
-}
+  songs:[{}]
 },{timestamps: true});
 
 const playlistcollection = mongoose.model('playlistcollection', playlistSchema);

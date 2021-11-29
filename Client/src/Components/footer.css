@@ -1,0 +1,35 @@
+.footer-container{
+    
+    display: block;
+    height: 8em;
+    width: 100%;
+    background: darkslateblue;
+    color: white;
+    font-family: 'Dancing Script';
+    font-size: 18px;
+    padding: 20px 0px;
+
+}
+.footer-container > div{
+    display: inline-flex;
+}
+.footer-container > .contact-card{
+    display: unset;
+    height: auto;
+    width: 50%;
+    position: relative;
+    margin-left: 2em;
+}
+.contact-card > span:hover{
+    font-size: 24px;
+    text-decoration: underline;
+}
+
+.info-card {
+    margin-left: 63em;
+}
+
+.card-find{
+    margin-top: 2em;
+    margin-left: 2em;
+}

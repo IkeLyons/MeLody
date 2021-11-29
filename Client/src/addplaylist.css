@@ -33,3 +33,27 @@
     background: slateblue;
     border: 1px solid slateblue;
 }
+
+.playlist-search-card{
+    height: 25em;
+    /* width: 40%; */
+    text-align: center;
+    align-items: center;
+
+}
+
+.playlist-modal-search>input{
+    margin: 6px 24px;
+}
+
+.songlist-textbox>input{
+    width: 100%;
+    margin: 15px 0px;
+}
+
+.songlistbox{
+    width: 29rem;
+    align-items: center;
+    /* height: 3em; */
+    margin: 10px;
+}

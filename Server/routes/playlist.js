@@ -28,8 +28,6 @@ router.post('/api/addUserPlaylist',(req,res)=>{
         for(var ele of req_data.collaborators.split(","))
           name_list.push(ele.trim());
       }
-      
-      
 
       for(var each_name of name_list){
         console.log("name_list " + each_name);
@@ -58,11 +56,24 @@ router.post('/api/addUserPlaylist',(req,res)=>{
 
 router.post('/api/getUserPlaylist',(req,res)=>{
   var request = req.body;
-
+  console.log(('/api/getUserPlaylist'));
   playlistcollection.find({user: request.user})
     .then((result)=>{
-      console.log((result[0]));
+      console.log((result));
       res.status(200).send(result);
+    })
+    .catch((err)=>{
+      res.status(400).send(error_message);
+    })
+});
+
+router.post('/api/getsongsforcode',(req,res)=>{
+  var request = req.body;
+  console.log(request)
+  playlistcollection.find({user: request.user, code:request.code})
+    .then((result)=>{
+      console.log((result[0]));
+      res.status(200).send(result[0].songs);
     })
     .catch((err)=>{
       res.status(400).send(error_message);

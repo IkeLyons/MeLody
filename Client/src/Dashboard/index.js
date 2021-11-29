@@ -8,6 +8,7 @@ import { Messages } from 'primereact/messages';
 
 import './styles.css';
 import img_path from './public/logo192.png';
+import Footer from '../Components/Footer.js';
 
 // The main component of the Dashboard, which displays friends, groups, and playlists
 export default class index extends Component {
@@ -22,95 +23,16 @@ export default class index extends Component {
       playlistCards: [],
       isVisibleUserPlayLists: true,
       isVisibleGroupPlayLists: false,
-      isVisibleFriendPlayLists: false
+      isVisibleFriendPlayLists: false,
     };
     this.usersPlayLists = {}
-
-    this.usersPlayLists = {
-      Mukesh: [
-        {
-          name: 'long Drive',
-          code: 'LD22',
-          genre: 'bluesMusic',
-          collaborators: ['IkeLyons']
-        },
-        {
-          name: 'My Workout',
-          code: 'MW21',
-          genre: 'rockMusic',
-          collaborators: ['IkeLyons']
-        },
-        { name: 'study', code: 'SM56', genre: 'bluesMusic', collaborators: [] },
-        {
-          name: 'The Big Sleep',
-          code: 'GS199',
-          genre: 'soulMusic',
-          collaborators: ['Tabitha', 'IceJJFish']
-        },
-        {
-          name: 'PaRTy Night',
-          code: 'PM17',
-          genre: 'rocknrollMusic',
-          collaborators: ['Tabitha', 'IceJJFish', 'Brandon']
-        },
-        {
-          name: 'Running',
-          code: 'RN77',
-          genre: 'hiphopMusic',
-          collaborators: []
-        },
-        {
-          name: 'PaRTy Night Friday',
-          code: 'PF17',
-          genre: 'rocknrollMusic',
-          collaborators: ['Brandon']
-        },
-        {
-          name: 'PaRTy Night Sunday',
-          code: 'PS17',
-          genre: 'rocknrollMusic',
-          collaborators: ['Brandon']
-        }
-      ],
-      Ike: [
-        {
-          name: 'long Drive 2',
-          code: 'LD22',
-          genre: 'bluesMusic',
-          collaborators: []
-        },
-        {
-          name: 'My Workout 2',
-          code: 'MW21',
-          genre: 'rockMusic',
-          collaborators: []
-        },
-        { name: 'study', code: 'SM56', genre: 'bluesMusic', collaborators: [] },
-        {
-          name: 'The GoodNight Sleep 2',
-          code: 'GS199',
-          genre: 'soulMusic',
-          collaborators: []
-        },
-        {
-          name: 'PaRTy Night 2',
-          code: 'PM17',
-          genre: 'rocknrollMusic',
-          collaborators: []
-        },
-        {
-          name: 'Running 2',
-          code: 'RN77',
-          genre: 'hiphopMusic',
-          collaborators: []
-        }
-      ]};
     this.groupUsersList = [
       { name: 'Group1', code: 'G1' },
       { name: 'Group2', code: 'G2' },
       { name: 'Group3', code: 'G3' },
       { name: 'Group4', code: 'G4' }
     ];
+    this.fwduser = null;
 
     this.friendUsersList = [];
 
@@ -174,11 +96,15 @@ export default class index extends Component {
 }
   getusersPlayLists = () =>{
 
-    alert("here");
+    
     var api_link = 'http://localhost:4000/playlist/api/getUserPlaylist';
+    var user_value = (this.state.selectedUserPlaylist === null ? this.state.username : this.state.selectedUserPlaylist);
+    
     var data = {
-      'user' : (this.state.selectedUserPlaylist === null ? this.state.username : this.state.selectedUserPlaylist)
+      'user' : user_value
     }
+
+    // this.setState({fwduser: user_value});
     var req = new Request(api_link, {
             method: 'POST',
             headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -194,7 +120,7 @@ export default class index extends Component {
                 var user_tmep = ""
                 for(var i = 0; i < data.length; i++){
                   user_tmep = data[i].user;
-                  var newObj = {
+                  const newObj = {
                     code: data[i].code,
                     genre: data[i].genre,
                     name: data[i].name,
@@ -205,6 +131,8 @@ export default class index extends Component {
                 final[user_tmep] = temp_arr
 
                 this.usersPlayLists = final
+                console.log(final)
+                console.log(this.usersPlayLists)
 
             })
             .catch((err)=>{
@@ -239,7 +167,7 @@ export default class index extends Component {
       console.log(Object.values(selected_user_name)[0]);
     }
 
-    // this.getusersPlayLists();
+    this.getusersPlayLists();
     var data_playlists = this.usersPlayLists;
     var temp_data = [];
 
@@ -256,9 +184,10 @@ export default class index extends Component {
     temp_data[0].forEach((d) => {
       allPlaylists.push(d);
     });
-    console.log('this.usersPlayLists '+ allPlaylists);
+    console.log('allPlaylists');
+    console.log(allPlaylists);
     return allPlaylists.map((playlist) => {
-      return <PlaylistCard key={playlist.code} playlist={playlist} />;
+      return <PlaylistCard key={playlist.code} playlist={playlist} fwduser={selected_user_name} />;
     });
   }
 
@@ -375,6 +304,7 @@ export default class index extends Component {
             </div>
           </div>
         </div>
+        <Footer />
       </Fragment>
     );
   }
