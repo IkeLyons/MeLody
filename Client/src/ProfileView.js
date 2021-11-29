@@ -19,57 +19,61 @@ class ProfileView extends React.Component {
       products: [],
       title: 'your title',
       desc: 'your description',
-      editable: false,
+      editable: false
     };
 
     this.data = [
       {
-        id: ("61a42bdbc2b08d7f929292b1"),
+        id: '61a42bdbc2b08d7f929292b1',
         user: 'Mukesh',
         code: 'SD22',
         name: 'Sad Songs',
         category: 'bluesMusic',
         collaborators: 'john',
-        image: 'https://i.scdn.co/image/ab67616d0000b273b0822610a715129583e6440c'
+        image:
+          'https://i.scdn.co/image/ab67616d0000b273b0822610a715129583e6440c'
       },
       {
-        id: ("61a42cf2c2b08d7f929292b6"),
+        id: '61a42cf2c2b08d7f929292b6',
         user: 'Mukesh',
         code: 'LD32',
         name: 'Long Drive',
         category: 'rocknrollMusic',
         collaborators: 'Ike, Brandon',
-        image: 'https://i.scdn.co/image/ab67616d0000b273b5d4730e54f84c66c70fe60a'
+        image:
+          'https://i.scdn.co/image/ab67616d0000b273b5d4730e54f84c66c70fe60a'
       },
       {
-        id: ("61a47e20bd97dc802df853ff"),
+        id: '61a47e20bd97dc802df853ff',
         user: 'Mukesh',
         code: 'Study66',
         name: 'Study Muzikk',
         category: 'rocknrollMusic',
         collaborators: 'Brandon,Ike',
-        image: 'https://i.scdn.co/image/ab67616d0000b2737636e1c9e67eaafc9f49aefd'
+        image:
+          'https://i.scdn.co/image/ab67616d0000b2737636e1c9e67eaafc9f49aefd'
       },
       {
-        id: ("61a47e94bd97dc802df85411"),
+        id: '61a47e94bd97dc802df85411',
         user: 'Mukesh',
         code: 'SL55',
         name: 'Sleep Songs',
         category: 'bluesMusic',
         collaborators: 'Ike,john',
-        image: 'https://i.scdn.co/image/ab67616d0000b273a02d47ad3c5c53a9c7e9e081'
+        image:
+          'https://i.scdn.co/image/ab67616d0000b273a02d47ad3c5c53a9c7e9e081'
       },
       {
-        id: ("61a47f14bd97dc802df8542d"),
+        id: '61a47f14bd97dc802df8542d',
         user: 'Mukesh',
         code: 'RK76',
         name: 'Rock Muzikk',
         category: 'rockMusic',
         collaborators: 'Brandon,Ike',
-        image: 'https://i.scdn.co/image/ab67616d0000b27376bc1c851462191faec76bf8'
+        image:
+          'https://i.scdn.co/image/ab67616d0000b27376bc1c851462191faec76bf8'
       }
-    ]
-
+    ];
 
     this.itemTemplate = this.itemTemplate.bind(this);
     this.editInfo = this.editInfo.bind(this);
@@ -81,33 +85,35 @@ class ProfileView extends React.Component {
     this.setState({
       products: this.data
     });
-    if(localStorage.getItem('user_desc')!== null){
+    if (localStorage.getItem('user_desc') !== null) {
       this.setState({
         desc: localStorage.getItem('user_desc')
       });
-    } 
+    }
   }
 
-  editInfo = (e) =>{
+  editInfo = (e) => {
     e.preventDefault();
     this.setState({
       editable: true
     });
-
-  }
-  saveChange = (e) =>{
+  };
+  saveChange = (e) => {
     e.preventDefault();
     this.setState({
       editable: false
     });
-    this.toast.show({severity:'success', summary: 'Success Message', detail:'Message Content', life: 3000});
-  }
-  onChangeDesc(e){
-
-    this.setState({ desc: e.target.value})
+    this.toast.show({
+      severity: 'success',
+      summary: 'Success Message',
+      detail: 'Message Content',
+      life: 3000
+    });
+  };
+  onChangeDesc(e) {
+    this.setState({ desc: e.target.value });
     localStorage.setItem('user_desc', e.target.value);
   }
-
 
   itemTemplate(item) {
     return (
@@ -150,48 +156,59 @@ class ProfileView extends React.Component {
           className="footer-btn p-button-secondary p-ml-2 p-col-4"
           onClick={this.editInfo}
         />
-        <Button className="footer-btn p-col-4" label="Save" icon="pi pi-check" onClick={this.saveChange}/>
+        <Button
+          className="footer-btn p-col-4"
+          label="Save"
+          icon="pi pi-check"
+          onClick={this.saveChange}
+        />
       </div>
     );
     return (
       <Fragment>
-      <Header stitle={'User Profile'}/>
-      <Toast ref={(el) => this.toast = el} />
-      <div className="pv-container p-d-flex p-jc-center">
-        <div className="p-mr-2">
-          <Card
-            title="Mukesh Mohanty"
-            subTitle="tHe Grim ReaPer"
-            style={{ width: '25em' }}
-           
-            footer={footer}
-            header={header}
-          >{
-            this.state.editable ? 
-            <InputText className=" ipdesc p-m-0" style={{ lineHeight: '1.5' }}  value={localStorage.getItem('user_desc')=== null ? this.state.desc : localStorage.getItem('user_desc')}
-            onChange={(e) => this.onChangeDesc(e)}>
-            </InputText> :
-            <p>{this.state.desc}</p>
-            }
-            
-          </Card>
-        </div>
-        <div>
-          <div className="orderlist-demo">
-            <div className="card">
-              <OrderList
-                value={this.state.products}
-                header="My Playlist"
-                dragdrop
-                listStyle={{ height: '40em', width: '25em' }}
-                dataKey="id"
-                itemTemplate={this.itemTemplate}
-                onChange={(e) => this.setState({ products: e.value })}
-              ></OrderList>
+        <Header stitle={'User Profile'} />
+        <Toast ref={(el) => (this.toast = el)} />
+        <div className="pv-container p-d-flex p-jc-center">
+          <div className="p-mr-2">
+            <Card
+              title="Mukesh Mohanty"
+              subTitle="tHe Grim ReaPer"
+              style={{ width: '25em' }}
+              footer={footer}
+              header={header}
+            >
+              {this.state.editable ? (
+                <InputText
+                  className=" ipdesc p-m-0"
+                  style={{ lineHeight: '1.5' }}
+                  value={
+                    localStorage.getItem('user_desc') === null
+                      ? this.state.desc
+                      : localStorage.getItem('user_desc')
+                  }
+                  onChange={(e) => this.onChangeDesc(e)}
+                ></InputText>
+              ) : (
+                <p>{this.state.desc}</p>
+              )}
+            </Card>
+          </div>
+          <div>
+            <div className="orderlist-demo">
+              <div className="card">
+                <OrderList
+                  value={this.state.products}
+                  header="My Playlist"
+                  dragdrop
+                  listStyle={{ height: '40em', width: '25em' }}
+                  dataKey="id"
+                  itemTemplate={this.itemTemplate}
+                  onChange={(e) => this.setState({ products: e.value })}
+                ></OrderList>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </Fragment>
     );
   }

@@ -5,7 +5,6 @@ import PlaylistCard from './components/playlistCard.js';
 import Header from '../Components/Header.js';
 import { Messages } from 'primereact/messages';
 
-
 import './styles.css';
 import img_path from './public/logo192.png';
 import Footer from '../Components/Footer.js';
@@ -23,9 +22,9 @@ export default class index extends Component {
       playlistCards: [],
       isVisibleUserPlayLists: true,
       isVisibleGroupPlayLists: false,
-      isVisibleFriendPlayLists: false,
+      isVisibleFriendPlayLists: false
     };
-    this.usersPlayLists = {}
+    this.usersPlayLists = {};
     this.groupUsersList = [
       { name: 'Group1', code: 'G1' },
       { name: 'Group2', code: 'G2' },
@@ -42,14 +41,13 @@ export default class index extends Component {
     this.setUserPlayLists = this.setUserPlayLists.bind(this);
     this.setGroupsPlayLists = this.setGroupsPlayLists.bind(this);
     this.setFriendsPlayLists = this.setFriendsPlayLists.bind(this);
-    this.getFriendsUserList =  this.getFriendsUserList.bind(this);
+    this.getFriendsUserList = this.getFriendsUserList.bind(this);
     this.getusersPlayLists = this.getusersPlayLists.bind(this);
     this.showError = this.showError.bind(this);
   }
 
-  componentDidMount(){
-    if(localStorage.getItem('username') !== null)
-      this.getFriendsUserList();
+  componentDidMount() {
+    if (localStorage.getItem('username') !== null) this.getFriendsUserList();
   }
   showError(strerr) {
     this.msgs1.show([
@@ -61,84 +59,86 @@ export default class index extends Component {
       }
     ]);
   }
-  getFriendsUserList=()=>{
-    var user = localStorage.getItem('username')
+  getFriendsUserList = () => {
+    var user = localStorage.getItem('username');
     var that = this;
     var data = {
-            'user': user,
-            'name': that.state.name,
-            'code': that.state.code,
-            'genre':that.state.genre,
-            'collaborators': that.state.collaborators,
-            'songs': that.state.songs
-        }
+      user: user,
+      name: that.state.name,
+      code: that.state.code,
+      genre: that.state.genre,
+      collaborators: that.state.collaborators,
+      songs: that.state.songs
+    };
     console.log(data);
 
-      var api_link = 'http://localhost:4000/api/app/getUsers';
+    var api_link = 'http://localhost:4000/api/app/getUsers';
 
-      fetch(api_link)
-        .then((res)=>{
-            
-            res.json().then((data)=>{
-              Object.entries(data).forEach(([k, v]) => {
-                this.friendUsersList.push({'name': v.user_name, 'code': v.user_name})
-              })
-              console.log(this.friendUsersList);
-            })
-            .catch((err)=>{
-              that.showError('Server connection Error');
-            })
-        })
-        .catch((err)=>{
+    fetch(api_link)
+      .then((res) => {
+        res
+          .json()
+          .then((data) => {
+            Object.entries(data).forEach(([k, v]) => {
+              this.friendUsersList.push({
+                name: v.user_name,
+                code: v.user_name
+              });
+            });
+            console.log(this.friendUsersList);
+          })
+          .catch((err) => {
             that.showError('Server connection Error');
-        })
-
-}
-  getusersPlayLists = () =>{
-
-    
+          });
+      })
+      .catch((err) => {
+        that.showError('Server connection Error');
+      });
+  };
+  getusersPlayLists = () => {
     var api_link = 'http://localhost:4000/playlist/api/getUserPlaylist';
-    var user_value = (this.state.selectedUserPlaylist === null ? this.state.username : this.state.selectedUserPlaylist);
-    
+    var user_value =
+      this.state.selectedUserPlaylist === null
+        ? this.state.username
+        : this.state.selectedUserPlaylist;
+
     var data = {
-      'user' : user_value
-    }
+      user: user_value
+    };
 
     // this.setState({fwduser: user_value});
     var req = new Request(api_link, {
-            method: 'POST',
-            headers: new Headers({ 'Content-Type': 'application/json' }),
-            body: JSON.stringify(data)
-          });
+      method: 'POST',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify(data)
+    });
 
-          fetch(req)
-            .then((res)=> res.json())
-              .then(data => {
+    fetch(req)
+      .then((res) => res.json())
+      .then((data) => {
+        var final = {};
+        var temp_arr = [];
+        var user_tmep = '';
+        for (var i = 0; i < data.length; i++) {
+          user_tmep = data[i].user;
+          const newObj = {
+            code: data[i].code,
+            genre: data[i].genre,
+            name: data[i].name,
+            collaborators: data[i].collaborators
+          };
+          temp_arr.push(newObj);
+        }
+        final[user_tmep] = temp_arr;
 
-                var final = {};
-                var temp_arr =[];
-                var user_tmep = ""
-                for(var i = 0; i < data.length; i++){
-                  user_tmep = data[i].user;
-                  const newObj = {
-                    code: data[i].code,
-                    genre: data[i].genre,
-                    name: data[i].name,
-                    collaborators: data[i].collaborators
-                  }
-                  temp_arr.push(newObj);
-                }
-                final[user_tmep] = temp_arr
-
-                this.usersPlayLists = final
-                console.log(final)
-                console.log(this.usersPlayLists)
-
-            })
-            .catch((err)=>{
-                // that.showError('Server connection Error');
-            })
-  }
+        this.usersPlayLists = final;
+        console.log(final);
+        console.log(this.usersPlayLists);
+      })
+      .catch((err) => {
+        // that.showError('Server connection Error');
+      });
+  };
 
   userPlaylistTemplate(option) {
     return (
@@ -159,7 +159,6 @@ export default class index extends Component {
 
   // Returns all of the playlist cards for the inputed username
   cardPlaylistTemplate(selected_user_name) {
-    
     if (selected_user_name === null || selected_user_name === undefined) return;
 
     if (typeof selected_user_name !== 'string') {
@@ -187,7 +186,13 @@ export default class index extends Component {
     console.log('allPlaylists');
     console.log(allPlaylists);
     return allPlaylists.map((playlist) => {
-      return <PlaylistCard key={playlist.code} playlist={playlist} fwduser={selected_user_name} />;
+      return (
+        <PlaylistCard
+          key={playlist.code}
+          playlist={playlist}
+          fwduser={selected_user_name}
+        />
+      );
     });
   }
 
@@ -233,7 +238,7 @@ export default class index extends Component {
   };
   setFriendsPlayLists = (e) => {
     e.preventDefault();
-    
+
     console.log('In Friend');
     // console.log(e.target.alt);
     this.setState({
@@ -247,7 +252,7 @@ export default class index extends Component {
   render() {
     return (
       <Fragment>
-        <Header stitle={'Dashboard'}/>
+        <Header stitle={'Dashboard'} />
         <Messages ref={(el) => (this.msgs1 = el)} />
         <div className="container-main">
           <div className="container-side">
@@ -292,10 +297,16 @@ export default class index extends Component {
                   <p>MY Playlists</p>
                 </span>
                 <span>
-                  <Link to={'/Melody/ProfileView'} className="pi pi-user-edit"></Link>
+                  <Link
+                    to={'/Melody/ProfileView'}
+                    className="pi pi-user-edit"
+                  ></Link>
                 </span>
                 <span>
-                  <Link to={'/Melody/AddPlaylist'} className="pi pi-calendar-plus"></Link>
+                  <Link
+                    to={'/Melody/AddPlaylist'}
+                    className="pi pi-calendar-plus"
+                  ></Link>
                 </span>
               </div>
               <span className="container-playlistcard">

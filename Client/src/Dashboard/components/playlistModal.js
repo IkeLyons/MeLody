@@ -1,22 +1,22 @@
 import React, { Component, Fragment } from 'react';
 import { Button } from 'primereact/button';
-import '../styles.css'
+import '../styles.css';
 
 export default class PlaylistModal extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       value: '',
-      songlist: null,
+      songlist: null
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.songInfoTemplate = this.songInfoTemplate.bind(this);
   }
-  componentDidMount(){
-    this.setState({songList: this.props.songList})
+  componentDidMount() {
+    this.setState({ songList: this.props.songList });
   }
 
   // convert time returned from spotify api from ms to minutes and seconds
@@ -35,19 +35,22 @@ export default class PlaylistModal extends Component {
   // }
 
   //creates an entry in the playlistModal containing one song, with the x button to remove that song from the playlist
-  songInfoTemplate(){
-    console.log(this.props.songList)
-    if(this.props.songList === undefined || this.props.songList === null) return;
-    console.log('songInfoTemplate')
+  songInfoTemplate() {
+    console.log(this.props.songList);
+    if (this.props.songList === undefined || this.props.songList === null)
+      return;
+    console.log('songInfoTemplate');
     console.log('---------- ROWS-------');
 
-
-    return(
+    return (
       <div>
-        {this.props.songList.forEach((row)=>{
+        {this.props.songList.forEach((row) => {
           console.log(row);
-            <div className="song-info-cont">
-            <Button icon="pi pi-tick" className="p-button-rounded p-button-info"/>
+          <div className="song-info-cont">
+            <Button
+              icon="pi pi-tick"
+              className="p-button-rounded p-button-info"
+            />
             <img
               className="song-image"
               alt={row.name}
@@ -56,17 +59,17 @@ export default class PlaylistModal extends Component {
                 (e.target.src =
                   'https://i.scdn.co/image/ab67616d0000b273cd4fbef085542cb698fd598c')
               }
-              />
+            />
             <div className="song-title">{row.songTitle}</div>
             <div className="song-artist">{row.artist}</div>
             <div className="song-album">{row.album}</div>
             <div className="song-length">
-            {this.millisToMinutesAndSeconds(row.time)}
+              {this.millisToMinutesAndSeconds(row.time)}
             </div>
-          </div> 
+          </div>;
         })}
       </div>
-    )
+    );
   }
 
   handleChange(event) {
@@ -124,7 +127,6 @@ export default class PlaylistModal extends Component {
       : 'playlist-modal-cnt display-none';
     return (
       <Fragment>
-        
         <div className={showHideClassName}>
           <div className="search-close-header">
             <form
@@ -150,23 +152,18 @@ export default class PlaylistModal extends Component {
             />
           </div>
           <div className="playlist-header">
-            <h2>
-              {this.props.name_}
-            </h2>
+            <h2>{this.props.name_}</h2>
           </div>
-          <div className='song-content-conatiner'>
+          <div className="song-content-conatiner">
             <div className="songs-header">
-                <div></div>
+              <div></div>
               <div>Title</div>
               <div>Artist</div>
               <div>Album</div>
-              <Button className = "time-header p-disabled" icon = "pi pi-clock"/>
+              <Button className="time-header p-disabled" icon="pi pi-clock" />
             </div>
-            <div className="playlist-content">
-             {this.songInfoTemplate()}
-            </div>
+            <div className="playlist-content">{this.songInfoTemplate()}</div>
           </div>
-          
         </div>
       </Fragment>
     );

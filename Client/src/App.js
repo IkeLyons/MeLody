@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { Switch,Route,BrowserRouter as Router,withRoute} from 'react-router-dom';
+import {
+  Switch,
+  Route,
+  BrowserRouter as Router,
+  withRoute
+} from 'react-router-dom';
 
 import Login from './Login';
 import Dashboard from './Dashboard';
 import ProfileView from './ProfileView';
 import ProtectedRoute from './Components/ProtectedRoute';
 import SignUp from './Login/SignUp';
-import "./index.css"
+import './index.css';
 import AddPlaylist from './AddPlaylist';
 import Logoff from './Components/Logoff';
 
@@ -19,11 +24,23 @@ class App extends Component {
         <div className="App">
           <Switch>
             <Route path="/Login" exact component={Login} />
-            <Route path='/SignUp' exact component={SignUp} />
+            <Route path="/SignUp" exact component={SignUp} />
             {/* <Route path="/Melody/Dashboard" exact component={Dashboard}/> */}
-            <ProtectedRoute path="/Melody/Dashboard" exact component={Dashboard}/> 
-            <ProtectedRoute path="/Melody/AddPlaylist" exact component={AddPlaylist}/> 
-            <ProtectedRoute path="/Melody/ProfileView" exact component={ProfileView} />
+            <ProtectedRoute
+              path="/Melody/Dashboard"
+              exact
+              component={Dashboard}
+            />
+            <ProtectedRoute
+              path="/Melody/AddPlaylist"
+              exact
+              component={AddPlaylist}
+            />
+            <ProtectedRoute
+              path="/Melody/ProfileView"
+              exact
+              component={ProfileView}
+            />
             <ProtectedRoute path="/Logoff" exact component={Logoff} />
           </Switch>
         </div>
