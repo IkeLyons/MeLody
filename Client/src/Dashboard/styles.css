@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Teko:wght@300&display=swap');
+
 .container-main {
   height: 100%;
   width: 100%;
   position: relative;
   display: inline-flex;
-  background: #f8f9fa;
+  background-image: url('./public/bg1.jpg');
 }
 
 .box {
@@ -81,6 +84,31 @@
   cursor: pointer;
 }
 
+.cnt-listheader > span:nth-child(2):hover {
+  /* font-size: xx-large; */
+  color: white;
+  background: lightcoral;
+}
+
+.cnt-listheader > span:nth-child(3) {
+  float: right;
+  background: darkslateblue;
+  width: 4.5em;
+  border: 1px solid white;
+}
+.cnt-listheader > span:nth-child(3) > a {
+  font-size: x-large;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cnt-listheader > span:nth-child(3):hover {
+  /* font-size: xx-large; */
+  color: white;
+  background: lightcoral;
+}
+
 .p-card .p-card-body {
   padding: 1rem;
   background: lightskyblue;
@@ -106,6 +134,67 @@
   height: 12em;
 }
 
+/*playlist modal styling*/
+
+.playlist-modal-cnt {
+  display: block;
+  width: auto;
+  margin: 5px 30px;
+}
+
+.playlist-content {
+  height: unset;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+  height: 20em;
+  display: grid;
+  margin: 0 auto;
+  margin-top: -2em;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  padding-bottom: 20px;
+  background-color: #fff;
+  align-self: center;
+  box-shadow: 0 12px 25px 0 rgba(199, 175, 189, 0.25);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 250ms 250ms ease, transform 300ms 250ms ease;
+  transform: scale(0);
+}
+
+.playlist-content.off {
+  opacity: 0;
+  visibility: hidden;
+  filter: blur(8px);
+  transform: scale(0.33);
+  box-shadow: 1rem 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.playlist-modal-cnt .actions {
+  border-top: 1px solid #ccc;
+  background: #eee;
+  padding: 0.5rem 1rem;
+}
+
+.modal-close-button {
+  border: 0;
+  background: crimson;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  line-height: 1;
+  /* margin-left: 40em; */
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
 /* Side Bar configs */
 
 .container-side {
@@ -125,7 +214,7 @@
 
 .side-link-block {
   height: 7em;
-  /* border: 1px solid black; */
+  cursor: pointer;
   padding: 15px;
   margin: 5px;
   display: inline-table;
@@ -142,4 +231,163 @@
 .cnt-selectuser > .p-listbox .p-component {
   border: none;
   /* width: 15rem; */
+}
+
+/*playlist modal styling*/
+
+.playlist-modal-cnt {
+  position: fixed;
+  width: 70vw;
+  height: 100vh;
+  top: 0px;
+  left:20.45vw;
+  padding: 5px;
+  /*transform: translate(-50%, -50%);*/
+  background: #FAF9F6/*rgba(0, 0, 0, 0.6)*/;
+  border-radius: 20px;
+  border: 0.5px solid gray;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.search-close-header {
+  display: inline-flex;
+  padding: 10px;
+  width: 100%;
+}
+
+
+.playlist-modal-search{
+  width: inherit;
+}
+.playlist-modal-search form {
+  display:flex;
+  flex-direction:row;
+  border: none;
+  padding:2px;
+  width: 31em;
+  /* font-family: 'Poiret One'; */
+}
+
+.playlist-modal-search form[type = submit] > .p-button .p-button-icon-only {
+  background: none;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.playlist-modal-search input[type = text]{
+  width: 20rem;
+    height: 2rem;
+    /* border-radius: 16px; */
+    font-size: larger;
+    margin-right: 10px;
+    font-family: 'Poiret One';
+    border: 1px solid white;
+    border-bottom: 1px solid slateblue;
+}
+
+.playlist-modal-search input[type = text]:hover{
+  border-bottom: 3px solid slateblue;
+  cursor: pointer;
+}
+
+
+.playlist-content {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  grid-template-rows: repeat(auto-fill, 120px);
+  grid-row-gap: 2em;
+  margin-left: -20vw;
+  margin-top: -120px;
+  width: 157%;
+  border-radius: 4px; 
+  background-color: none;
+  opacity: 1;
+  transform: scale(0.6);
+  transition: opacity 250ms 250ms ease, transform 300ms 250ms ease;
+
+}
+
+.songs-header {
+  display: grid;
+  grid-template-columns: 10% 1.2fr 0.8fr 0.8fr .3fr;
+  background: #FAF9F6;
+  align-items: center;
+  justify-content: center;
+}
+
+.songs-header > div {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.playlist-content :hover{
+  background: gainsboro;
+}
+
+.playlist-content::-webkit-scrollbar {
+  width: 15px;
+}
+
+
+.playlist-content::-webkit-scrollbar-track {
+  background: #FAF9F6;
+}
+
+
+.playlist-content::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 3px;
+}
+
+
+.playlist-content::-webkit-scrollbar-thumb:hover {
+  background: gray;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+/* Song Bar display within playlists*/
+.song-info-cont {
+  display: grid;
+  grid-template-columns: .3fr .5fr 1fr 1fr 1fr .3fr;
+  background: #FAF9F6;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+.song-info-cont :hover {
+  background-color: gainsboro;
+}
+*/
+.song-image { 
+  width: 100px;
+  height: 100px;
+}
+
+
+/* Contnet added Mukesh */
+.playlist-header{
+  justify-content: center;
+  text-align: center;
+  /* text-decoration: underline; */
+  text-transform: uppercase;
+  height: 3em;
+  width: 100%;
+  background: darkslateblue;
+  color: white;
+  font-size: 1.5em;
+  font-family: 'Poiret One',cursive;
+}
+
+.song-content-conatiner{
+  display: grid;
+  padding: 0px 5px;
+  font-family: 'Teko', sans-serif;
+  font-size: xx-large;
 }

@@ -52,3 +52,26 @@
 .profile-container {
   margin-top: 4em;
 }
+
+.pv-container{
+  width: 100%;
+    height: max-content;
+    margin-top: 3em;
+}
+.footer-btn{
+  padding: 15px;
+  margin-top: 7px;
+}
+
+.ipdesc{
+  line-height: 1.5;
+  background: inherit;
+  border: none;
+  border-bottom: 1px solid white;
+  width: 22em;
+  color: white;
+}
+.orderlist-demo .card{
+  display: block;
+  margin: unset;
+}

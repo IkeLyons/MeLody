@@ -2,9 +2,12 @@ import React, { Component, Fragment } from 'react';
 import { ListBox } from 'primereact/listbox';
 import { Link } from 'react-router-dom';
 import PlaylistCard from './components/playlistCard.js';
+import Header from '../Components/Header.js';
+import { Messages } from 'primereact/messages';
 
 import './styles.css';
 import img_path from './public/logo192.png';
+import Footer from '../Components/Footer.js';
 
 // The main component of the Dashboard, which displays friends, groups, and playlists
 export default class index extends Component {
@@ -12,7 +15,7 @@ export default class index extends Component {
     super(props);
 
     this.state = {
-      username: 'Mukesh',
+      username: localStorage.getItem('username'),
       selectedUserPlaylist: null,
       selectedUserForgroupsandFriends: null,
       selectedItem: null,
@@ -21,112 +24,16 @@ export default class index extends Component {
       isVisibleGroupPlayLists: false,
       isVisibleFriendPlayLists: false
     };
-
-    this.usersPlayLists = {
-      Mukesh: [
-        {
-          name: 'long Drive',
-          code: 'LD22',
-          genre: 'bluesMusic',
-          collaborators: ['IkeLyons']
-        },
-        {
-          name: 'My Workout',
-          code: 'MW21',
-          genre: 'rockMusic',
-          collaborators: ['IkeLyons']
-        },
-        { name: 'study', code: 'SM56', genre: 'jazzMusic', collaborators: [] },
-        {
-          name: 'The Big Sleep',
-          code: 'GS199',
-          genre: 'soulMusic',
-          collaborators: ['Tabitha', 'IceJJFish']
-        },
-        {
-          name: 'PaRTy Night',
-          code: 'PM17',
-          genre: 'rocknrollMusic',
-          collaborators: ['Tabitha', 'IceJJFish', 'Brandon']
-        },
-        {
-          name: 'Running',
-          code: 'RN77',
-          genre: 'hiphopMusic',
-          collaborators: []
-        },
-        {
-          name: 'PaRTy Night Friday',
-          code: 'PF17',
-          genre: 'rocknrollMusic',
-          collaborators: ['Brandon']
-        },
-        {
-          name: 'PaRTy Night Sunday',
-          code: 'PS17',
-          genre: 'rocknrollMusic',
-          collaborators: ['Brandon']
-        }
-      ],
-      IkeLyons: [
-        {
-          name: 'long Drive 2',
-          code: 'LD22',
-          genre: 'bluesMusic',
-          collaborators: []
-        },
-        {
-          name: 'My Workout 2',
-          code: 'MW21',
-          genre: 'rockMusic',
-          collaborators: []
-        },
-        { name: 'study', code: 'SM56', genre: 'jazzMusic', collaborators: [] },
-        {
-          name: 'The GoodNight Sleep 2',
-          code: 'GS199',
-          genre: 'soulMusic',
-          collaborators: []
-        },
-        {
-          name: 'PaRTy Night 2',
-          code: 'PM17',
-          genre: 'rocknrollMusic',
-          collaborators: []
-        },
-        {
-          name: 'Running 2',
-          code: 'RN77',
-          genre: 'hiphopMusic',
-          collaborators: []
-        },
-        {
-          name: 'PaRTy Night Friday 2',
-          code: 'PF17',
-          genre: 'rocknrollMusic',
-          collaborators: []
-        },
-        {
-          name: 'PaRTy Night Sunday 2',
-          code: 'PS17',
-          genre: 'rocknrollMusic',
-          collaborators: []
-        }
-      ]
-    };
+    this.usersPlayLists = {};
     this.groupUsersList = [
       { name: 'Group1', code: 'G1' },
       { name: 'Group2', code: 'G2' },
       { name: 'Group3', code: 'G3' },
       { name: 'Group4', code: 'G4' }
     ];
+    this.fwduser = null;
 
-    this.friendUsersList = [
-      { name: 'IkeLyons', code: 'IK' },
-      { name: 'Tabitha', code: 'TB' },
-      { name: 'Brandon', code: 'BD' },
-      { name: 'IceJJFish', code: 'IJ' }
-    ];
+    this.friendUsersList = [];
 
     this.userPlaylistTemplate = this.userPlaylistTemplate.bind(this);
     this.cardPlaylistTemplate = this.cardPlaylistTemplate.bind(this);
@@ -134,7 +41,104 @@ export default class index extends Component {
     this.setUserPlayLists = this.setUserPlayLists.bind(this);
     this.setGroupsPlayLists = this.setGroupsPlayLists.bind(this);
     this.setFriendsPlayLists = this.setFriendsPlayLists.bind(this);
+    this.getFriendsUserList = this.getFriendsUserList.bind(this);
+    this.getusersPlayLists = this.getusersPlayLists.bind(this);
+    this.showError = this.showError.bind(this);
   }
+
+  componentDidMount() {
+    if (localStorage.getItem('username') !== null) this.getFriendsUserList();
+  }
+  showError(strerr) {
+    this.msgs1.show([
+      {
+        severity: 'error',
+        summary: 'Server Error :',
+        detail: strerr,
+        sticky: true
+      }
+    ]);
+  }
+  getFriendsUserList = () => {
+    var user = localStorage.getItem('username');
+    var that = this;
+    var data = {
+      user: user,
+      name: that.state.name,
+      code: that.state.code,
+      genre: that.state.genre,
+      collaborators: that.state.collaborators,
+      songs: that.state.songs
+    };
+    console.log(data);
+
+    var api_link = 'http://localhost:4000/api/app/getUsers';
+
+    fetch(api_link)
+      .then((res) => {
+        res
+          .json()
+          .then((data) => {
+            Object.entries(data).forEach(([k, v]) => {
+              this.friendUsersList.push({
+                name: v.user_name,
+                code: v.user_name
+              });
+            });
+            console.log(this.friendUsersList);
+          })
+          .catch((err) => {
+            that.showError('Server connection Error');
+          });
+      })
+      .catch((err) => {
+        that.showError('Server connection Error');
+      });
+  };
+  getusersPlayLists = () => {
+    var api_link = 'http://localhost:4000/playlist/api/getUserPlaylist';
+    var user_value =
+      this.state.selectedUserPlaylist === null
+        ? this.state.username
+        : this.state.selectedUserPlaylist;
+
+    var data = {
+      user: user_value
+    };
+
+    // this.setState({fwduser: user_value});
+    var req = new Request(api_link, {
+      method: 'POST',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify(data)
+    });
+
+    fetch(req)
+      .then((res) => res.json())
+      .then((data) => {
+        var final = {};
+        var temp_arr = [];
+        var user_tmep = '';
+        for (var i = 0; i < data.length; i++) {
+          user_tmep = data[i].user;
+          const newObj = {
+            code: data[i].code,
+            genre: data[i].genre,
+            name: data[i].name,
+            collaborators: data[i].collaborators
+          };
+          temp_arr.push(newObj);
+        }
+        final[user_tmep] = temp_arr;
+
+        this.usersPlayLists = final;
+        console.log(final);
+        console.log(this.usersPlayLists);
+      })
+      .catch((err) => {
+        // that.showError('Server connection Error');
+      });
+  };
 
   userPlaylistTemplate(option) {
     return (
@@ -155,18 +159,19 @@ export default class index extends Component {
 
   // Returns all of the playlist cards for the inputed username
   cardPlaylistTemplate(selected_user_name) {
-    if (selected_user_name === null) return;
+    if (selected_user_name === null || selected_user_name === undefined) return;
 
     if (typeof selected_user_name !== 'string') {
       console.log(typeof selected_user_name);
       console.log(Object.values(selected_user_name)[0]);
     }
 
+    this.getusersPlayLists();
     var data_playlists = this.usersPlayLists;
     var temp_data = [];
 
     Object.entries(data_playlists).forEach(([k, v]) => {
-      // console.log(selected_user_name);
+      console.log(selected_user_name);
       if (k === selected_user_name) {
         temp_data.push(v);
       }
@@ -178,8 +183,16 @@ export default class index extends Component {
     temp_data[0].forEach((d) => {
       allPlaylists.push(d);
     });
+    console.log('allPlaylists');
+    console.log(allPlaylists);
     return allPlaylists.map((playlist) => {
-      return <PlaylistCard key={playlist.code} playlist={playlist} />;
+      return (
+        <PlaylistCard
+          key={playlist.code}
+          playlist={playlist}
+          fwduser={selected_user_name}
+        />
+      );
     });
   }
 
@@ -205,12 +218,12 @@ export default class index extends Component {
 
   setUserPlayLists = (e) => {
     e.preventDefault();
-    // this.setState({selectedUserPlaylist:'Mukesh'});
+
     this.setState({
       isVisibleUserPlayLists: true,
       isVisibleGroupPlayLists: false,
       isVisibleFriendPlayLists: false,
-      selectedUserPlaylist: 'Mukesh'
+      selectedUserPlaylist: this.state.username
     });
   };
   setGroupsPlayLists = (e) => {
@@ -225,17 +238,22 @@ export default class index extends Component {
   };
   setFriendsPlayLists = (e) => {
     e.preventDefault();
+
     console.log('In Friend');
+    // console.log(e.target.alt);
     this.setState({
       isVisibleUserPlayLists: false,
       isVisibleGroupPlayLists: false,
-      isVisibleFriendPlayLists: true
+      isVisibleFriendPlayLists: true,
+      selectedUserPlaylist: e.target.alt
     });
   };
 
   render() {
     return (
       <Fragment>
+        <Header stitle={'Dashboard'} />
+        <Messages ref={(el) => (this.msgs1 = el)} />
         <div className="container-main">
           <div className="container-side">
             <div
@@ -279,10 +297,15 @@ export default class index extends Component {
                   <p>My Playlists</p>
                 </span>
                 <span>
-                  {' '}
                   <Link
                     to={'/Melody/ProfileView'}
-                    className="pi pi-user"
+                    className="pi pi-user-edit"
+                  ></Link>
+                </span>
+                <span>
+                  <Link
+                    to={'/Melody/AddPlaylist'}
+                    className="pi pi-calendar-plus"
                   ></Link>
                 </span>
               </div>
@@ -292,6 +315,7 @@ export default class index extends Component {
             </div>
           </div>
         </div>
+        <Footer />
       </Fragment>
     );
   }
