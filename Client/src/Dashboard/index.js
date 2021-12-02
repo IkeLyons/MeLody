@@ -198,7 +198,7 @@ export default class index extends Component {
       );
     });
   }
-  //displays the list of playlists 
+  //displays the list of playlists
   userSearchModule(listofplaylists) {
     console.log(listofplaylists);
     return (
