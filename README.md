@@ -8,6 +8,6 @@ For both the frontend (Client folder) and the backend (Server folder) you are go
 
 `npm init` should install all required packages, then `npm start` runs the respective server.
 
-For the backend you are also going to need to setup a MongoDB by first installing MongoDB. Then you can run `mongosh "mongodb+srv://melodycluster.cgcsn.mongodb.net/MelodyDB"`
+For the backend you are also going to need to setup a MongoDB by first installing MongoDB. Then you can run `mongosh "mongodb+srv://melodycluster.cgcsn.mongodb.net/MelodyDB"` with the server credentials.
 
 Additionally the server requires API codes for Spotify. These should be contained in a file called secrets.json and be placed in the Server folder. For obvious reasons the unique API code used by the team cannot be published to GitHub.
