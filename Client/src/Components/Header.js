@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import './header.css';
+import './Header.css';
 import { Link } from 'react-router-dom';
 
 import logo from '../Dashboard/public/Melody.jpg';

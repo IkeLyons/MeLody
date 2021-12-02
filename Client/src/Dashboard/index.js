@@ -10,6 +10,7 @@ import img_path from './public/logo192.png';
 import Footer from '../Components/Footer.js';
 
 // The main component of the Dashboard, which displays friends, groups, and playlists
+//Following the State Design Pattern
 export default class index extends Component {
   constructor(props) {
     super(props);
@@ -59,6 +60,7 @@ export default class index extends Component {
       }
     ]);
   }
+  //retrieves and stores the friends list of the logged in user
   getFriendsUserList = () => {
     var user = localStorage.getItem('username');
     var that = this;
@@ -95,6 +97,7 @@ export default class index extends Component {
         that.showError('Server connection Error');
       });
   };
+  //retrieves and stores the list of playlists owned by the user
   getusersPlayLists = () => {
     var api_link = 'http://localhost:4000/playlist/api/getUserPlaylist';
     var user_value =
@@ -195,7 +198,7 @@ export default class index extends Component {
       );
     });
   }
-
+  //displays the list of playlists 
   userSearchModule(listofplaylists) {
     console.log(listofplaylists);
     return (
@@ -215,7 +218,7 @@ export default class index extends Component {
       </div>
     );
   }
-
+  //displays playlists for the logged in user
   setUserPlayLists = (e) => {
     e.preventDefault();
 
@@ -226,6 +229,7 @@ export default class index extends Component {
       selectedUserPlaylist: this.state.username
     });
   };
+  //displays playlists owned by a chosen group
   setGroupsPlayLists = (e) => {
     e.preventDefault();
 
@@ -236,6 +240,7 @@ export default class index extends Component {
     });
     // console.log('In Group' + this.state.isVisibleGroupPlayLists);
   };
+  //displays playlists owned by a chosen friend
   setFriendsPlayLists = (e) => {
     e.preventDefault();
 
