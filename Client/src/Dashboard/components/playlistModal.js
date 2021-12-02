@@ -117,7 +117,7 @@ export default class PlaylistModal extends Component {
             time: responseTime
           };
           that.playlistSongs.push(song);
-          that.setState({ value: '' });      // update value so that React re renders the component (State design pattern)
+          that.setState({ value: '' }); // update value so that React re renders the component (State design pattern)
         }
       });
     });
