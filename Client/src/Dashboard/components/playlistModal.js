@@ -15,6 +15,8 @@ export default class PlaylistModal extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.songInfoTemplate = this.songInfoTemplate.bind(this);
   }
+
+  // set state value of songlist to the playlist chosen by user and update dashboard to show that playlist
   componentDidMount() {
     this.setState({ songList: this.props.songList });
   }
@@ -27,6 +29,7 @@ export default class PlaylistModal extends Component {
   }
 
   // searches for a given song title and artist, removes any songs with that combo from playlist songs
+  // had to be removed temporarily, not functional in current iteration
   // removeSong(removedSongTitle, removedSongArtist) {
   //   this.playlistSongs = this.playlistSongs.filter(function (el) {
   //     return el.songTitle !== removedSongTitle;
@@ -72,10 +75,13 @@ export default class PlaylistModal extends Component {
     );
   }
 
+  // another function that will help us update the state according to the state design pattern
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
 
+  // this function takes the input into the search bar inside the playlistModal, contacts the Spotify API with the query,
+  // receives a json back containing all of the matching songs, and adds the most similar one to the current playlist
   handleSubmit(event) {
     event.preventDefault();
     var data = {
@@ -96,6 +102,7 @@ export default class PlaylistModal extends Component {
         else if (response.status === 402) that.showError(data.message);
         else {
           console.log(data.message);
+          // here we take all of the necessary data from the Spotify response to save a song in our playlist
           let responseImage = data.message[0]['album']['images'][0]['url'];
           let responseAlbum = data.message[0]['album']['name'];
           let responseTitle = data.message[0]['name'];
@@ -110,13 +117,14 @@ export default class PlaylistModal extends Component {
             time: responseTime
           };
           that.playlistSongs.push(song);
-          that.setState({ value: '' });
+          that.setState({ value: '' }); // update value so that React re renders the component (State design pattern)
         }
       });
     });
     this.setState({ value: '' });
   }
 
+  // using state design pattern to detect change in state(props) and close modal
   onClose = (e) => {
     this.props.onClose();
   };

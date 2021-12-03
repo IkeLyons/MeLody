@@ -11,7 +11,7 @@ import { Messages } from 'primereact/messages';
 export default class AddPlaylist extends Component {
   constructor(props) {
     super(props);
-
+    //Following the State Design Pattern
     this.state = {
       code: null,
       name: null,
