@@ -92,7 +92,7 @@ class ProfileView extends React.Component {
       });
     }
   }
-//alter the user information that is displayed on the profile
+  //alter the user information that is displayed on the profile
   editInfo = (e) => {
     e.preventDefault();
     this.setState({
