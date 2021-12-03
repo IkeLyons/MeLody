@@ -10,6 +10,7 @@ import { Password } from 'primereact/password';
 import { Link } from 'react-router-dom';
 
 export default class Login extends Component {
+  //constructor for login
   constructor(props) {
     super(props);
 
@@ -24,6 +25,7 @@ export default class Login extends Component {
     this.showPasswordError = this.showPasswordError.bind(this);
     // this.verifySpotifyLogin = this.verifySpotifyLogin.bind(this);
   }
+ //console messages
   showError(strerr) {
     this.msgs1.show([
       {
@@ -47,7 +49,9 @@ export default class Login extends Component {
   showPasswordError() {
     <Message severity="error" />;
   }
+
   verifyLogin(data) {
+    // Send password/username input request to Server
     console.log('In Submit Login');
     var request = new Request('http://localhost:4000/api/validateLogin', {
       method: 'POST',
@@ -56,12 +60,15 @@ export default class Login extends Component {
     });
 
     var that = this;
+    //Receive response from post request
     fetch(request)
       .then(function (response) {
+         //Show appropiate messages for Bad Requests
         if (response.status === 400) throw new Error();
         response.json().then(function (data) {
           if (response.status === 401) that.showError(data.message);
           else if (response.status === 402) that.showError(data.message);
+          //login was successful
           else {
             localStorage.setItem('username', that.state.username);
             localStorage.setItem('isLogged', 'true');
@@ -70,15 +77,18 @@ export default class Login extends Component {
           }
         });
       })
+      //Request wasn't received at all
       .catch(function (err) {
         that.showError('BAD Request');
       });
   }
-
+  
+  //Allow user to login through their Spotify account
   verifySpotifyLogin = () => {
     this.props.history.push('http://localhost:4000/api/spotifyLogin');
   };
 
+  //Send in username and password.
   submitForm(event) {
     event.preventDefault();
 
