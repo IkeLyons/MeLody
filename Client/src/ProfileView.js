@@ -22,6 +22,7 @@ class ProfileView extends React.Component {
       editable: false
     };
 
+    //hard coded mock data, showing playlists
     this.data = [
       {
         id: '61a42bdbc2b08d7f929292b1',
@@ -91,13 +92,14 @@ class ProfileView extends React.Component {
       });
     }
   }
-
+//alter the user information that is displayed on the profile
   editInfo = (e) => {
     e.preventDefault();
     this.setState({
       editable: true
     });
   };
+  //alter the user information in the database
   saveChange = (e) => {
     e.preventDefault();
     this.setState({
@@ -110,11 +112,13 @@ class ProfileView extends React.Component {
       life: 3000
     });
   };
+  //changes the state of the component when the user description is edited
   onChangeDesc(e) {
     this.setState({ desc: e.target.value });
     localStorage.setItem('user_desc', e.target.value);
   }
 
+  //helps to render playlists in a scrollable list
   itemTemplate(item) {
     return (
       <div className="product-item">
