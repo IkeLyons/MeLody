@@ -25,7 +25,7 @@ export default class Login extends Component {
     this.showPasswordError = this.showPasswordError.bind(this);
     // this.verifySpotifyLogin = this.verifySpotifyLogin.bind(this);
   }
- //console messages
+  //console messages
   showError(strerr) {
     this.msgs1.show([
       {
@@ -63,7 +63,7 @@ export default class Login extends Component {
     //Receive response from post request
     fetch(request)
       .then(function (response) {
-         //Show appropiate messages for Bad Requests
+        //Show appropiate messages for Bad Requests
         if (response.status === 400) throw new Error();
         response.json().then(function (data) {
           if (response.status === 401) that.showError(data.message);
@@ -82,7 +82,7 @@ export default class Login extends Component {
         that.showError('BAD Request');
       });
   }
-  
+
   //Allow user to login through their Spotify account
   verifySpotifyLogin = () => {
     this.props.history.push('http://localhost:4000/api/spotifyLogin');
